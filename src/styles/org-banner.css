@@ -1,0 +1,132 @@
+/* =========================================================
+   Org banner — Pluralsight-style "blade" in the site's palette.
+   Layers, back to front:
+     .ob-blade          → rounded rectangle: background photo under a
+                          brand-blue tint (the blue arcs you see)
+     .ob-blade::before  → a huge off-white ellipse; only its curved
+                          left/right edges show, leaving blue arcs
+     .ob-blade::after   → soft "silk" sheen on the off-white
+   ========================================================= */
+.ob {
+  --ob-blue: #0b5cff;
+  --ob-ink: #101418;
+  --ob-body: #4a5261;
+  --ob-paper: #fafaf7;
+
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 64px 80px;
+}
+.ob *, .ob *::before, .ob *::after { box-sizing: border-box; }
+
+.ob-blade {
+  position: relative;
+  isolation: isolate;          /* keeps the ::before/::after layers inside */
+  overflow: hidden;
+  border-radius: 20px;
+  /* Blue gradient over the photo: deep at the edges, a touch lighter in the
+     middle so the arcs have some depth instead of being a flat fill. */
+  background:
+    linear-gradient(120deg, rgba(8, 64, 190, 0.9), rgba(11, 92, 255, 0.78) 50%, rgba(8, 64, 190, 0.9)),
+    var(--ob-img, none) center / cover no-repeat,
+    var(--ob-blue);
+  box-shadow: 0 30px 60px -30px rgba(16, 20, 24, 0.35);
+  /* Vertical centring + left inset that clears the oval's curve at the
+     corners (the oval's edge sits ~12% in at the top and bottom). */
+  display: flex;
+  align-items: center;
+  min-height: 340px;
+  padding: 64px 12%;
+}
+
+/* off-white oval — wider than the blade's middle, taller than the blade.
+   Slightly translucent so the photo ghosts through faintly. */
+.ob-blade::before {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  left: 50%;
+  top: 50%;
+  width: 86%;
+  height: 240%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(250, 250, 247, 0.955);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35);
+}
+
+/* subtle wavy sheen on top of the off-white */
+.ob-blade::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 45% at 38% 18%, rgba(16, 20, 24, 0.04), transparent 70%),
+    radial-gradient(45% 60% at 62% 85%, rgba(16, 20, 24, 0.035), transparent 70%),
+    radial-gradient(35% 30% at 72% 30%, rgba(11, 92, 255, 0.06), transparent 70%);
+}
+
+.ob-content { max-width: 820px; }
+
+.ob-eyebrow {
+  margin: 0 0 12px;
+  color: var(--ob-blue);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.ob h3 {
+  margin: 0 0 18px;
+  color: var(--ob-ink);
+  font-family: "Recoleta", Georgia, serif;
+  font-size: clamp(30px, 3.4vw, 46px);
+  line-height: 1.12;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.ob-highlight {
+  display: inline-block;       /* one solid box, like the reference */
+  background: var(--ob-blue);
+  color: #fff;
+  border-radius: 6px;
+  padding: 0 10px 2px;
+}
+
+.ob-lead {
+  margin: 0 0 12px;
+  color: var(--ob-body);
+  font-size: 17px;
+  line-height: 1.65;
+  max-width: 720px;
+}
+
+.ob-cta { margin-top: 28px; }
+
+/* ---------- Tablet / mobile ----------
+   Portrait layout: the oval gets tall and anchors to the top, so blue
+   (and the photo) curves in from the bottom corners. */
+@media (max-width: 1023px) {
+  .ob { padding: 48px 33px; }
+  .ob-blade {
+    max-width: 640px;
+    margin: 0 auto;
+    min-height: 0;
+    padding: 64px 36px 150px;
+  }
+  .ob-blade::before {
+    top: -12%;
+    width: 170%;
+    height: 100%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 480px) {
+  .ob { padding: 40px 16px; }
+  .ob-blade { padding: 48px 24px 130px; }
+  .ob-lead { font-size: 16px; }
+}

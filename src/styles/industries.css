@@ -1,0 +1,455 @@
+/* ------------------------------------------------------------------ *
+ * Industries we serve.
+ *
+ * Tokens at the top — the house set, the same values pillars.css and the
+ * page shell use: #101418 ink, #0B5CFF blue as an accent only, #4A5261
+ * body copy, #FAFAF7 cream ground. The section used to run a palette of
+ * its own (a duller #2B5FA8 blue on a white ground), which read as a
+ * widget dropped into the page rather than part of it.
+ *
+ * Recoleta is spelled out rather than var(--font-recoleta) for the same
+ * reason index.css and pillars.css do it: that token is declared in a
+ * Tailwind @theme block, which a plain stylesheet cannot see.
+ * ------------------------------------------------------------------ */
+
+.inds {
+  --ink: #101418;
+  --brand: #0b5cff;
+  --muted: #4a5261;
+  --paper: #fafaf7;
+  --card: #ffffff;
+  --hair: rgba(16, 20, 24, 0.08);
+  --wash: #eef3ff;
+
+  --radius: 16px;
+
+  /* One stagger step, the same one the pillars grid above uses, so the
+     two sections arrive at the same rhythm. */
+  --step: var(--reveal-step, 100ms);
+
+  position: relative;
+  scroll-margin-top: 6rem;
+  border-top: 1px solid var(--hair);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.inds__inner {
+  max-width: 80rem; /* the site Container's `default` width */
+  margin-inline: auto;
+  padding: clamp(4rem, 9vw, 7rem) clamp(1.25rem, 5vw, 3rem);
+}
+
+/* ------------------------------------------------------------- head */
+/* The house heading, in the same three parts as every other section:
+   asterisk and tracked-out blue on the eyebrow, Recoleta uppercase on
+   the display line, closed with the blue full stop. */
+.inds__head {
+  max-width: 46rem;
+  margin: 0 0 clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.inds__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brand);
+}
+
+.inds__ast {
+  flex: none;
+  width: 0.875rem;
+  height: 0.875rem;
+  fill: none;
+  stroke: var(--brand);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+
+.inds__title {
+  margin: 1.25rem 0 0;
+  font-family: "Recoleta", Georgia, serif;
+  /* 500 and not a shade more — Recoleta ships here as a single Medium
+     file, so asking for bolder gets a synthesised bold. */
+  font-weight: 500;
+  font-size: clamp(1.9rem, 3.4vw, 2.3rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.inds__stop {
+  color: var(--brand);
+}
+
+.inds__lede {
+  margin: 1.25rem 0 0;
+  max-width: 42rem;
+  font-size: 15px;
+  line-height: 1.75rem;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+@media (min-width: 1024px) {
+  .inds__lede {
+    font-size: 16px;
+  }
+}
+
+/* ------------------------------------------------------- tier one */
+.inds__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(0.85rem, 1.4vw, 1.25rem); /* the pillars grid gutter */
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 700px) {
+  .inds__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Five across only once each card can still hold a two-line name and a
+   readable line under it; below that the row is five slivers. */
+@media (min-width: 1080px) {
+  .inds__grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  /* Five across is the only place the column is narrow enough that a
+     landscape frame collapses to a stripe — see the note on .ind__frame. */
+  .ind__frame {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+/* The house reveal — see --reveal-* in index.css. Cards follow the header
+   (a RevealGroup) by CUE.follow. */
+.ind {
+  opacity: 0;
+  transform: translateY(var(--reveal-rise, 28px));
+  transition: opacity var(--reveal-dur, 1s) var(--reveal-ease),
+    transform var(--reveal-dur, 1s) var(--reveal-ease);
+}
+
+.inds.is-in .ind,
+.inds.is-in .also {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(var(--reveal-follow, 240ms) + var(--i, 0) * var(--step));
+}
+
+.ind__link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid var(--hair);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--card);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease,
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ind__link:hover {
+  border-color: rgba(11, 92, 255, 0.35);
+  box-shadow: 0 18px 40px -26px rgba(16, 20, 24, 0.45);
+  transform: translateY(-2px);
+}
+
+.ind__link:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+/* The frame owns the crop and the overflow, so the image can scale
+   inside it without the card's own corners moving.
+
+   On the ratio. 4:3 is right while the cards are wide, but this grid ends
+   at five across, where a card is about 210px — and 4:3 of that is a
+   155px letterbox, too shallow for a photograph to be anything but a
+   stripe. The frame turns portrait at the five-across breakpoint, where
+   the column is narrow enough to want the height. */
+.ind__frame {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: var(--wash);
+}
+
+.ind__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* No object-position here — each card sets its own inline, because the
+     source frames are different shapes and a shared default crops at
+     least one of them badly. */
+
+  /* The grade. These photographs came from three unrelated shoots and
+     disagree on white balance, exposure and how loud their colour is.
+     Pulling the saturation down and lifting contrast slightly puts them
+     on one key before the veil below tints them all the same way. */
+  filter: saturate(0.55) contrast(1.08) brightness(1.02);
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.45s ease;
+}
+
+/* The veil: house blue over the top of the frame, ink at the foot. It
+   does the unifying work — whatever the photograph's own colour was, it
+   arrives in the section's palette — and the darker foot doubles as a
+   scrim, so the image meets the body rule as a fade rather than a hard
+   seam. */
+.ind__frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    175deg,
+    rgba(11, 92, 255, 0.26) 0%,
+    rgba(11, 92, 255, 0.08) 42%,
+    rgba(16, 20, 24, 0.34) 100%
+  );
+  transition: opacity 0.45s ease;
+}
+
+/* Hover lets the photograph come up for air: the veil thins and the
+   grade relaxes toward the real colour. */
+.ind__link:hover .ind__img {
+  transform: scale(1.05);
+  filter: saturate(0.85) contrast(1.04) brightness(1.03);
+}
+
+.ind__link:hover .ind__frame::after {
+  opacity: 0.55;
+}
+
+/* ---------------------------------------------- frames without a photo */
+/* Not every sector has a shoot behind it. Rather than leave those cards
+   on a flat wash — which reads as a picture that failed to load — they
+   get a drawn tile: the sector's mark held large on the same blue the
+   veil above puts over the photographs, so the row is one set. */
+.ind__frame--drawn {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(168deg, #123a8a 0%, #0b5cff 55%, #1b6bff 100%);
+}
+
+/* The hairline grid keeps the tile from reading as a plain colour swatch
+   and picks up the same geometry the photographs have in their windows
+   and shelving. */
+.ind__frame--drawn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.13) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.13) 1px, transparent 1px);
+  background-size: 26px 26px;
+  mask-image: radial-gradient(115% 95% at 50% 0%, #000 15%, transparent 78%);
+  -webkit-mask-image: radial-gradient(
+    115% 95% at 50% 0%,
+    #000 15%,
+    transparent 78%
+  );
+}
+
+/* The drawn tile is already in the palette, so it only wants the foot of
+   the veil — the blue half would double up. */
+.ind__frame--drawn::after {
+  background: linear-gradient(
+    180deg,
+    transparent 45%,
+    rgba(8, 16, 38, 0.42) 100%
+  );
+}
+
+.ind__mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: clamp(3.25rem, 6vw, 4.25rem);
+  height: clamp(3.25rem, 6vw, 4.25rem);
+  color: rgba(255, 255, 255, 0.94);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ind__mark svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* The mark's stroke is drawn at 30px in the tier-two list; held this
+   large it needs thinning or it reads as a bold icon rather than a line
+   drawing. */
+.ind__mark svg g {
+  stroke-width: 1;
+}
+
+.ind__link:hover .ind__mark {
+  transform: translateY(-3px);
+}
+
+.ind__body {
+  display: block;
+  padding: clamp(1rem, 1.6vw, 1.25rem);
+  border-top: 1px solid var(--hair);
+}
+
+.ind__name {
+  display: block;
+  font-family: "Recoleta", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(0.95rem, 1.15vw, 1.0625rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-wrap: balance;
+  transition: color 0.3s ease;
+}
+
+.ind__link:hover .ind__name {
+  color: var(--brand);
+}
+
+.ind__line {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+/* ------------------------------------------------------- tier two */
+.inds__more {
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+  padding-top: clamp(2rem, 3.5vw, 2.75rem);
+  border-top: 1px solid var(--hair);
+}
+
+/* Tracked out at the eyebrow's setting, but in body grey: the blue
+   eyebrow at the top of the section is the section's one label, and a
+   second one in the same colour would read as a second section. */
+.inds__morelabel {
+  margin: 0 0 clamp(1.5rem, 2.5vw, 2rem);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.inds__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(1.25rem, 2.4vw, 2rem) clamp(1.5rem, 3vw, 3rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+}
+
+.also {
+  opacity: 0;
+  transform: translateY(var(--reveal-rise, 28px));
+  transition: opacity var(--reveal-dur, 1s) var(--reveal-ease),
+    transform var(--reveal-dur, 1s) var(--reveal-ease);
+}
+
+.also__link {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.85rem;
+  align-items: start;
+  text-decoration: none;
+  color: inherit;
+}
+
+.also__icon {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  flex: none;
+  color: var(--brand);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.also__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.also__link:hover .also__icon {
+  transform: translateY(-2px);
+}
+
+.also__name {
+  display: block;
+  font-family: "Recoleta", Georgia, serif;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--ink);
+  transition: color 0.3s ease;
+}
+
+.also__link:hover .also__name {
+  color: var(--brand);
+}
+
+.also__line {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.also__link:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ind,
+  .also,
+  .ind__img,
+  .ind__frame::after,
+  .ind__mark,
+  .ind__link,
+  .ind__name,
+  .also__name,
+  .also__icon {
+    transition-duration: 0.01ms;
+  }
+
+  /* The scale-up is the one hover here that actually moves a large
+     surface, so it goes entirely rather than just going fast. */
+  .ind__link:hover .ind__img {
+    transform: none;
+  }
+}

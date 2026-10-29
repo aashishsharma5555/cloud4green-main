@@ -1,0 +1,52 @@
+.c4g-silk {
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+  overflow: hidden;
+  background: #eef3fd; /* shows through wherever the layers are transparent */
+}
+
+/* Each layer is a little larger than the section so drifting it never
+   reveals an edge. 4% bleed on every side covers the ±2% movement below. */
+.c4g-silk__layer {
+  position: absolute;
+  inset: -4%;
+  width: 108%;
+  height: 108%;
+  will-change: transform;
+}
+
+/* The trick to "subtle": long durations, tiny distances, alternate so it
+   never snaps back, and different timings per layer so the loop never
+   visibly repeats. Nothing here moves more than ~2% of the section. */
+.c4g-silk__front {
+  animation: c4g-silk-front 24s ease-in-out infinite alternate;
+}
+.c4g-silk__back {
+  animation: c4g-silk-back 31s ease-in-out infinite alternate;
+}
+.c4g-silk__glow {
+  animation: c4g-silk-glow 17s ease-in-out infinite alternate;
+}
+
+@keyframes c4g-silk-front {
+  from { transform: translate3d(-1.5%, 0.5%, 0) rotate(-0.6deg); }
+  /* to   { transform: translate3d(1.5%, -1.5%, 0) rotate(0.6deg); } */
+  to   { transform: translate3d(1.5%, -1.5%, 0) rotate(3deg); }
+}
+@keyframes c4g-silk-back {
+  from { transform: translate3d(1%, 1%, 0) scale(1.02); }
+  to   { transform: translate3d(-1.5%, -0.5%, 0) scale(1); }
+}
+@keyframes c4g-silk-glow {
+  from { opacity: 0.55; }
+  to   { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .c4g-silk__front,
+  .c4g-silk__back,
+  .c4g-silk__glow {
+    animation: none;
+  }
+}

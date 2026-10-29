@@ -1,0 +1,2229 @@
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+} */
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Italianno&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+/* @import "@fontsource-variable/geist"; */
+
+@font-face {
+  font-family: "Recoleta";
+  src: url("./assets/fonts/Recoleta-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* Typography */
+  /* --font-heading: "Manrope", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-sans: var(--font-body); */
+
+ /* --font-heading: "Playfair Display Variable", serif;
+  --font-body: "Inter", sans-serif;
+  --font-sans: var(--font-body);
+--font-script: "Manrope", sans-serif; */
+
+--font-heading: "Playfair Display Variable", serif;
+  --font-recoleta: "Recoleta", serif;
+  --font-body: "Inter", sans-serif;
+  --font-sans: var(--font-body);
+  --font-script: "Manrope", sans-serif;
+
+  /* Shadcn / Semantic Colors */
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-blue-hover: var(--brand-blue-hover);
+  --color-brand-ink: var(--brand-ink);
+
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+
+  /* Border Radius */
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* :root {
+    --background: oklch(100% 0.00011 271.152);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: oklch(0.205 0 0);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --border: oklch(0.922 0 0);
+    --input: oklch(0.922 0 0);
+    --ring: oklch(0.708 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --radius: 0.625rem;
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: oklch(0.205 0 0);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: oklch(0.708 0 0);
+} */
+
+:root {
+  /* ======================================================
+     CLOUD4GREEN BRAND TOKENS
+  ====================================================== */
+  --text-color: black;
+  --brand-navy: #0d357e;
+  --brand-navy-light: #1e488f;
+
+  --brand-green: #00804c;
+  --brand-green-light: #74c365;
+
+  --brand-yellow: #dbe64c;
+
+  /* Accent blue — drives the CTA button treatment */
+  --brand-blue: #0b5cff;
+  --brand-blue-hover: #0a4ede;
+  --brand-blue-glow: rgba(11, 92, 255, 0.45);
+  --brand-ink: #101418;
+  --brand-ink-hover: #1b2027;
+
+  /* Mesh Gradient */
+
+  --mesh-blue: #cfe9ff;
+  --mesh-green: #ddf5d2;
+  --mesh-yellow: #f4f8c5;
+  --mesh-white: #ffffff;
+
+  /* Neutrals */
+
+  --neutral-50: #ffffff;
+  --neutral-100: #fafaf7;
+  --neutral-200: #f4f8fc;
+  --neutral-300: #e4e8eb;
+  --neutral-500: #687280;
+  --neutral-900: #001f3f;
+
+  /* ======================================================
+     PAGE CHROME HEIGHTS
+     ------------------------------------------------------
+     Everything that sits above a page's first section, so a
+     section can ask for "the rest of the viewport" without
+     any page re-counting these pixels by hand. Keep each
+     value in step with the component it names.
+  ====================================================== */
+
+  /* AnnouncementBar — h-10 */
+  --c4g-announcement-h: 2.5rem;
+  /* Navbar's sticky row — h-20 */
+  --c4g-navbar-h: 5rem;
+  /* The bare 1px is Navbar's scroll sentinel, which is also in flow. */
+  --c4g-chrome-h: calc(var(--c4g-announcement-h) + 1px + var(--c4g-navbar-h));
+
+  /* ======================================================
+     SCROLL REVEAL — the CSS mirror of
+     components/motion/reveal-tokens.js. Sections whose entrance is
+     a stylesheet keyed off `.is-in` (pillars, industries, stats)
+     read these, so they arrive on the same pulse as the framer ones.
+  ====================================================== */
+  --reveal-ease: cubic-bezier(0.16, 1, 0.3, 1); /* EASE, expo.out */
+  --reveal-dur: 1s;                               /* DURATION */
+  --reveal-rise: 28px;                            /* RISE */
+  --reveal-step: 100ms;                           /* STAGGER */
+  --reveal-line-step: 120ms;                      /* LINE_STAGGER */
+  --reveal-follow: 240ms;                         /* CUE.follow */
+
+  /* ======================================================
+     SHADCN SEMANTIC TOKENS
+  ====================================================== */
+
+  --background: var(--neutral-100);
+  /* --background: #F8F0E5; */
+  /* --foreground: var(--neutral-900); */
+  --foreground: var(--text-color);
+
+  --card: var(--neutral-50);
+  --card-foreground: var(--neutral-900);
+
+  --popover: var(--neutral-50);
+  --popover-foreground: var(--neutral-900);
+
+  --primary: var(--brand-navy);
+  --primary-foreground: #ffffff;
+
+  --secondary: var(--neutral-200);
+  --secondary-foreground: var(--brand-navy);
+
+  --muted: var(--neutral-200);
+  --muted-foreground: var(--neutral-500);
+
+  --accent: var(--brand-yellow);
+  --accent-foreground: var(--brand-navy);
+
+  --destructive: #dc2626;
+
+  --border: var(--neutral-300);
+  --input: var(--neutral-300);
+
+  --ring: var(--brand-navy-light);
+
+  --chart-1: var(--brand-navy);
+  --chart-2: var(--brand-green);
+  --chart-3: var(--brand-yellow);
+  --chart-4: var(--brand-green-light);
+  --chart-5: var(--brand-navy-light);
+
+  --radius: 1rem;
+
+  /* Sidebar */
+
+  --sidebar: #ffffff;
+  --sidebar-foreground: var(--brand-navy);
+
+  --sidebar-primary: var(--brand-navy);
+  --sidebar-primary-foreground: #ffffff;
+
+  --sidebar-accent: var(--neutral-200);
+  --sidebar-accent-foreground: var(--brand-navy);
+
+  --sidebar-border: var(--neutral-300);
+  --sidebar-ring: var(--brand-navy-light);
+}
+
+.dark {
+  --background: #071525;
+  --foreground: #ffffff;
+
+  --card: #0d1d30;
+  --card-foreground: #ffffff;
+
+  --popover: #0d1d30;
+  --popover-foreground: #ffffff;
+
+  --primary: var(--brand-yellow);
+  --primary-foreground: var(--brand-navy);
+
+  --secondary: #142942;
+  --secondary-foreground: #ffffff;
+
+  --muted: #142942;
+  --muted-foreground: #b9c3d0;
+
+  --accent: var(--brand-green);
+  --accent-foreground: #ffffff;
+
+  --destructive: #ef4444;
+
+  --border: rgba(255,255,255,.08);
+  --input: rgba(255,255,255,.12);
+
+  --ring: var(--brand-yellow);
+
+  --chart-1: var(--brand-yellow);
+  --chart-2: var(--brand-green);
+  --chart-3: var(--brand-navy-light);
+  --chart-4: var(--brand-green-light);
+  --chart-5: #ffffff;
+
+  --sidebar: #071525;
+  --sidebar-foreground: #ffffff;
+
+  --sidebar-primary: var(--brand-yellow);
+  --sidebar-primary-foreground: var(--brand-navy);
+
+  --sidebar-accent: #142942;
+  --sidebar-accent-foreground: #ffffff;
+
+  --sidebar-border: rgba(255,255,255,.08);
+  --sidebar-ring: var(--brand-yellow);
+}
+
+/* .dark {
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.205 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.205 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.922 0 0);
+    --primary-foreground: oklch(0.205 0 0);
+    --secondary: oklch(0.269 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --accent: oklch(0.269 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.556 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.556 0 0);
+} */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    }
+  body {
+    @apply bg-background text-foreground;
+    }
+  html {
+    @apply font-sans;
+    }
+}
+
+ section.hero {
+    position:relative;
+    min-height:calc(100vh - 80px);
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+    /* background: linear-gradient(180deg, #04154c 2%, rgb(0 73 248) 16%, rgb(0 0 0 / 0%) 35%) */
+  }
+ 
+  
+
+   .hero-word {
+  display: inline-block;
+  animation: fadeWord 2s ease-in-out;
+}
+
+@keyframes border-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.contact-sales-button {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: none;
+}
+
+/* Animated border */
+/* .contact-sales-button::before {
+  content: "";
+  position: absolute;
+  inset: -100%;
+  z-index: -2;
+  background: conic-gradient(
+    from 90deg,
+    transparent 0%,
+    transparent 25%,
+    #60a5fa 45%,
+    #2563eb 50%,
+    #60a5fa 55%,
+    transparent 75%,
+    transparent 100%
+  );
+  animation: border-spin 2.5s linear infinite;
+} */
+
+.contact-sales-button::before {
+  content: "";
+  position: absolute;
+  inset: -100%;
+  z-index: -2;
+  background: conic-gradient(
+    from 90deg,
+    transparent 0%,
+    transparent 35%,
+    rgba(6, 146, 228, 0.986) 45%,
+    rgba(59, 130, 246, 1) 50%,
+    rgba(38, 192, 141, 0.952) 55%,
+    transparent 65%,
+    transparent 100%
+  );
+  animation: border-spin 3s linear infinite;
+}
+
+/* Original button background */
+.contact-sales-button::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  z-index: -1;
+  border-radius: inherit;
+  background: #08233d;
+}
+
+/* slow global swell — keeps the whole field breathing under the wave */
+.vbands {
+  animation: swell 18s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* per-column wave; each column gets its own negative delay inline */
+.vglow {
+  animation: colWave 18s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes swell {
+  0%, 100% { transform: translateY(70px); }
+  50%      { transform: translateY(-50px); }
+}
+
+@keyframes colWave {
+  0%   { transform: translateY(120px); }
+  38%  { transform: translateY(-122px); }
+  62%  { transform: translateY(160px); }
+  82%  { transform: translateY(-100px); }
+  100% { transform: translateY(120px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vbands, .vglow { animation: none; }
+}
+
+/* Hide horizontal scrollbar */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* A scrollbar you only notice when you go looking for it. Used by the
+   certification-track cards, whose lists are clipped to the height of the
+   first card and open into a scroll on "View more".
+
+   `scrollbar-gutter: stable` is the load-bearing line: it reserves the
+   gutter even while the region is `overflow: hidden`, so every card wraps
+   its labels at the same width and nothing reflows when a card opens.
+
+   The standard properties come second on purpose — where they're honoured
+   (Chrome 121+, Firefox, Safari 18.2+) the browser ignores the ::-webkit-
+   rules above, and where they aren't, the ::-webkit- rules still land. */
+.c4g-quiet-scroll {
+  scrollbar-gutter: stable;
+}
+
+.c4g-quiet-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.c4g-quiet-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.c4g-quiet-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(16, 20, 24, 0.16);
+  border-radius: 999px;
+}
+
+.c4g-quiet-scroll:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(16, 20, 24, 0.3);
+}
+
+.c4g-quiet-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(16, 20, 24, 0.16) transparent;
+}
+
+.c4g-quiet-scroll:hover {
+  scrollbar-color: rgba(16, 20, 24, 0.3) transparent;
+}
+
+.brandPromo {
+  /* background: linear-gradient(90deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%); */
+
+ /* background: linear-gradient(90deg,rgb(60, 87, 207) 0%, rgba(5, 112, 179, 1) 62%, rgb(9, 211, 110) 100%); */
+ background: #010d1b;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* ==========================================================================
+   HERO — the display composition
+   ==========================================================================
+
+   One number drives the whole block. --hero-measure is the width of the
+   composition; the headline's size, its indent, the lede's column and the map
+   behind them are all fractions of it. Change the measure and every part moves
+   together, so the layout keeps its proportions at any viewport instead of
+   being re-tuned breakpoint by breakpoint.
+
+   Where the fractions come from
+   -----------------------------
+   Set in Recoleta Medium at -0.02em of tracking, the two lines measure, in ems
+   of the headline's own font-size. These are read out of
+   assets/fonts/Recoleta-Medium.ttf (hmtx + cmap), not eyeballed:
+
+       HANDS-ON LABS               8.066em
+       FOR ENTERPRISE LEARNING.   13.335em   <- longest, so it sets the size
+
+   Line 1 also carries the asterisk, which is 0.86em wide with 0.26em of air
+   after it, so what it actually occupies is 8.066 + 1.12 = 9.186em.
+
+   Size the headline so the longest line fills 96% of the measure:
+
+       --hero-cap = 0.96 / 13.335 = 0.0720
+
+   which puts the two lines at 66.1% and 96.0% of the measure. Both are centred
+   on the measure's axis, which is the viewport's — the same axis the map behind
+   them and the partner strip below them are drawn on, so the whole fold reads as
+   one column rather than three alignments arguing.
+
+   The 4% of headroom is thin next to the 36% the three-line version had, which
+   is the price of a headline that spans the fold rather than sitting in half of
+   it. `white-space: nowrap` is still safe because the *block* is 75vw inside a
+   full-width stage: a line that grew a word would run into the 12.5vw of margin
+   either side long before it reached the window. It would stop being centred on
+   anything, though, so a copy change here wants the numbers above re-measured
+   rather than eyeballed.
+
+   Vertical metrics
+   ----------------
+   Recoleta's content area is exactly 1.000em (ascent 0.772 / descent 0.228)
+   against Inter's 1.210em, and its caps are 0.710em against Inter's 0.7275 —
+   so leading and every offset derived from it had to be re-derived when the
+   face changed rather than carried over. Stacked line boxes put consecutive
+   baselines --hero-leading apart, so the visible gap between one line's
+   baseline and the next line's cap top is (leading - capHeight). Holding that
+   gap at the 0.153em the block was drawn with gives:
+
+       --hero-leading = 0.710 + 0.153 = 0.86
+
+   Within a line box of that leading, the cap band runs from
+
+       cap top  = (0.86 - 1.000)/2 + (0.772 - 0.710) = -0.008em
+       baseline = (0.86 - 1.000)/2 + 0.772           =  0.702em
+
+   both measured from the top of the box. Those numbers place the asterisk and
+   the buttons; neither is nudged by eye.
+
+   Which number to change for what
+   -------------------------------
+       headline size ............ --hero-cap (below). 0.0720 is a 96% fill;
+                                  0.0675 is 90%, 0.0750 is 100%.
+       whole composition width .. --hero-measure (below)
+       line spacing ............. --hero-leading (below)
+       phone headline size ...... the font-size clamp in .hero-display
+       map plate width .......... nothing. It is 100vw at every width.
+       gap under the nav ........ --hero-gap-top (below). Fixed at every
+                                  desktop width; don't pad the stage.
+       map's foot in the fold ... nothing. The map grows to reach it — see the
+                                  height rule in the lg block.
+       space around the block ... the py- and gap- classes in Hero.jsx
+   ========================================================================== */
+
+.hero-stage {
+  /* Capped by height as well as width. A short, wide laptop screen has less
+     room under the nav than a tall one at the same width, and without the vh
+     term the headline would grow into space that isn't there.
+
+     75vw, not the 62vw this was. The headline is one long line now rather than
+     three short ones, and a line that spans three quarters of the screen is the
+     composition — at 62vw the same copy either had to be set small enough to
+     read as a subhead or wrap back into the three-line block it came from.
+
+     Both ceilings are carried over in proportion rather than reused as-is. The
+     1600px one binds at the same viewport width the old 1320px did (1320/0.62 =
+     2129px, x 0.75 = 1597). The vh one is looser because what it is really
+     capping is the headline's height in the fold, and the headline is two line
+     boxes now rather than three. Old: 3 x 0.86 x 0.0793 = 20.5% of the measure,
+     so a 150vh measure put the block at 30.7vh. New: 2 x 0.86 x 0.0720 = 12.4%,
+     so 200vh puts it at 24.8vh — the same order of restraint on a short, wide
+     window, without the term firing on ordinary laptops the way a literal 150vh
+     would now that the measure itself is wider. */
+  --hero-measure: min(75vw, 1600px, 200vh);
+  --hero-cap: 0.072;
+  /* --hero-fs: calc(var(--hero-measure) * var(--hero-cap)); */
+  --hero-fs: clamp(2.5rem, 7.2vw, 4.5rem);
+  --hero-leading: 0.86;
+
+  /* The phone/tablet pair, hoisted out of .hero-display so the map's anchor can
+     be written against them too. Below the breakpoint the headline is still
+     centred, at a viewport-clamped size, and set on three lines instead of two;
+     leading is the same derivation as the desktop one against the looser gap
+     this size wants: 0.710 + 0.193 = 0.90.
+
+     9.5vw, down from 10.5vw, because the size has a job here it didn't have
+     before: line 1 with its mark is 9.066em (0.78 + 0.22 + 8.066), and it has
+     to fit the narrowest phone in ONE line box, or the headline is four boxes
+     tall and the map anchored below it lands in the type. At 375px the stage's
+     px-5 leaves 335px, so the ceiling is 335/9.066 = 36.9px = 9.85vw; 9.5vw
+     takes that with a little air. The 1.9rem floor is the same number at 320px,
+     which is where vw stops being the binding term. */
+  --hero-fs-sm: clamp(1.9rem, 9.5vw, 4.5rem);
+  --hero-leading-sm: 0.9;
+
+  /* --- The fold: the gap under the nav, and the map's foot ----------------
+   *
+   * Two things want the vertical space under the nav — the gap the headline
+   * hangs by, and the map, which is sized by its width (75vw / 2.512) and so
+   * has no idea how tall the fold is. Only one of the two can be derived from
+   * the other, and this used to derive the wrong one. The gap was whatever was
+   * left after the map, chosen so the map's foot always landed on the fold's
+   * bottom edge; that holds the artwork still and lets the type move. Every
+   * pixel of window width adds 0.3px to the map's height and takes 0.3px off
+   * the gap, so the headline climbs toward the nav as the screen grows: 175px
+   * of gap at 1610x885, 86px on a 2560-wide window at the same height. The
+   * fixed thing in the fold should be the type, not the ground behind it.
+   *
+   * So the gap is stated and the map gives way. --hero-gap-top is the
+   * headline's distance from the nav: 2.43em of the display size, which is the
+   * 175px of the reference composition and stays 175px at every desktop width,
+   * because --hero-fs is at its 4.5rem ceiling from 1000px up. In ems rather
+   * than as a flat 175px so it is still the same measurement — 2.83 line boxes
+   * of the headline — if the display size is ever changed.
+   *
+   * The second term gives it back on a window too short to spend it. Below
+   * ~745px of window height the gap is 28% of the fold instead; at every
+   * full-height laptop and desktop the em term is the smaller of the two and
+   * binds alone. It buys the short window some room but it does not on its own
+   * keep the partner strip inside the fold — that is the third cap on
+   * --hero-partners-drop in the lg block, and this comment used to claim the
+   * job was done here.
+   *
+   * The map's foot is held from the other end now, by the map's own height at
+   * lg — it grows past 75vw, to at most 100vw, to reach the bottom of the fold.
+   * See the media query. --hero-map-foot and --hero-hang did that job from this
+   * end and are gone with the derivation they belonged to; the stage is padded
+   * by the gap directly.
+   *
+   * 120px is the chrome above the hero: the 40px announcement bar plus the
+   * 80px nav row, matching the stage's own min-height in Hero.jsx. */
+  --hero-fold: calc(100svh - 120px);
+  --hero-gap-top: min(
+    calc(var(--hero-fs) * 2.43),
+    calc(var(--hero-fold) * 0.28)
+  );
+
+  --hero-map-ratio: 2.512;
+  --hero-map-width: 75vw;
+  --hero-map-fill: 0.55;
+
+  /* Whichever of the two runs out first — see .hero-map for why there are two
+     terms. Stated as a height rather than a width because that is what the
+     fold has to reason about; the map takes its width back off it. A third
+     term joins these at lg, where the map is also what closes the fold. */
+  --hero-map-height: max(
+    calc(var(--hero-map-width) / var(--hero-map-ratio)),
+    calc(var(--hero-fold) * var(--hero-map-fill))
+  );
+
+  /* The map's top edge, in the headline's own ems — the derivation is in
+     .hero-map. Restated in the desktop size in the media query below. */
+  --hero-map-top: calc(var(--hero-fs-sm) * (var(--hero-leading-sm) * 3 - 0.2));
+
+  /* --- Where the partner marquee rides ------------------------------------
+   *
+   * As a share of the map's own height, measured from its top edge. 0.70 is
+   * the middle of South America: in the dot artwork's 2000x801 viewBox the
+   * continent runs from y=440 at the Caribbean coast to y=790 at Tierra del
+   * Fuego, and its widest part — Brazil, from the equator to about 20°S — sits
+   * across y=520..600, so 0.70 x 801 = 561 is the line through it.
+   *
+   * Stated against the map rather than left to the flow because the flow can't
+   * know: the strip used to land wherever the headline above it happened to
+   * end, which on a 1920x1080 screen was 40% down the map — the Sahara — and
+   * moved every time the copy or the window changed. Tied to the map it holds
+   * the same latitude at every size.
+   *
+   * The lift is the banner's own header height plus half its logo row, so what
+   * lands on the line is the row of logos rather than the middle of the whole
+   * banner box: 1rem of section padding + 1rem label + 1.5rem below it +
+   * 0.5rem above the row + half of the row's 5rem. See PartnerBanner.jsx —
+   * the h-20 row there and this number are one measurement written twice.
+   *
+   * The drop is the desktop refinement on top of that, and it is the one
+   * number here measured against the headline rather than against the map —
+   * see the lg block below. Zero at the sizes where the strip is carried in a
+   * centred composition and there is no room to spend.
+   */
+  --hero-partners-line: 0.7;
+  --hero-partners-lift: 6.5rem;
+  --hero-partners-drop: 0px;
+
+  width: 100%;
+}
+
+.hero-block {
+  width: 100%;
+  margin-inline: auto;
+
+  /* Above the map backdrop. */
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Headline ----------------------------------------------------------- */
+
+.hero-display {
+  margin: 0;
+
+  /* Spelled out rather than var(--font-recoleta): that token is declared in
+     `@theme inline`, which inlines it into Tailwind's own utilities and never
+     emits it as a custom property on :root — so the var would resolve to
+     nothing here. The `font-recoleta` utility class still works; this file
+     just can't reach the variable behind it. */
+  font-family: "Recoleta", Georgia, serif;
+
+  /* 500 and not a shade more. Recoleta ships here as a single Medium file, and
+     the @font-face above declares it at weight 500 — ask for 700 and the
+     browser synthesises the bold by smearing the outlines, which at 130px on a
+     serif is very visible and would also invalidate the advance widths the
+     layout above is derived from. */
+  font-weight: 500;
+
+  text-transform: uppercase;
+  color: var(--brand-ink);
+
+  /* Centred at every width, not just from lg up. The two lines are a single
+     symmetric block now, and the map and the partner strip are both drawn on the
+     viewport's axis — so centring is the only alignment that doesn't introduce
+     a second one. Below the breakpoint the lines wrap instead of holding, and
+     centred wrapped copy is what the rest of the fold already looks like. */
+  text-align: center;
+
+  /* Both numbers live on .hero-stage, because the map's anchor is derived from
+     them too and the two must not be able to drift apart. */
+  font-size: var(--hero-fs-sm);
+  line-height: var(--hero-leading-sm);
+
+  /* A serif can't be tracked as tightly as a grotesque before the serifs start
+     touching; -0.02em is the tighten, not the -0.035em Inter was carrying. */
+  letter-spacing: -0.02em;
+}
+
+.hero-line {
+  display: block;
+
+  /* The mask the line slides up out of at the reveal — see the gate rules near
+     the bottom of this file for the movement itself. Declared here because it
+     is geometry, not animation: it is in force whether or not the preloader
+     ever runs, and at rest it clips nothing.
+   *
+   * clip-path rather than `overflow: hidden`, because the clip has to reach
+   * *past* the line box on both edges and only clip-path can do that for free.
+   * The asterisk on line 1 hangs about 0.39em above the line box top (it is a
+   * zero-height inline-block lifted by transform, see .hero-mark) and the
+   * descenders drop below the bottom, so an overflow box would have to buy the
+   * room with padding and hand it straight back with a negative margin — and a
+   * negative block-start margin on the first line of the h1 collapses through
+   * .hero-display and lifts the whole headline by that much. A negative inset
+   * expands the clip region and touches layout not at all.
+   *
+   * The two numbers are not symmetric because only the bottom edge is load
+   * bearing. That is the edge the type enters through, so every em of slack
+   * there is an em of the line sitting visible before the reveal starts; 0.16em
+   * is the descenders and nothing more. The top edge is free — the line is
+   * nowhere near it until it has arrived — so the asterisk can have all the
+   * room it wants. Horizontal insets are -100vw, i.e. no horizontal clipping at
+   * all: from lg up these lines are `white-space: nowrap` and must be allowed
+   * to be whatever width they come out. */
+  clip-path: inset(-0.9em -100vw -0.16em -100vw);
+}
+
+.hero-line__inner {
+  display: block;
+}
+
+/* Below lg the second line is too long to hold, so it breaks — and where it
+ * breaks is stated here rather than left to the window. Not for taste: the map
+ * behind the composition is anchored a fixed number of line boxes down (see
+ * --hero-map-top), so a headline whose height depends on the viewport would
+ * walk out from under it. "FOR ENTERPRISE" / "LEARNING." is also the only break
+ * of the two that leaves both halves able to fit a phone.
+ *
+ * That, plus the ceiling on --hero-fs-sm that keeps line 1 in one box, is what
+ * makes "three line boxes below lg, two from lg up" true at every width rather
+ * than at most of them.
+ */
+.hero-tail {
+  display: block;
+}
+
+.hero-stop {
+  color: var(--brand-blue);
+}
+
+/* The asterisk is inline at every width — it leads line 1 and is centred with
+ * it, rather than hanging in a margin. It hung in one while lines 1 and 2 were
+ * flush right: there, letting it into the measure would have pushed the line's
+ * right edge out past line 2's and broken the rectangle they made. Centred
+ * lines have no such edge to protect, and a mark hanging outside a centred
+ * block just puts the block off-axis by half its width.
+ *
+ * height: 0 matters more than it looks. An inline-block with no in-flow line
+ * boxes takes its baseline from its bottom margin edge, so a zero-height
+ * wrapper sits exactly on the text baseline and adds nothing to line 1's line
+ * box — leaving all three lines the same height, which is what the lede's and
+ * the buttons' positions are computed from further down. Give the wrapper a
+ * real height and line 1 grows, everything below it shifts, and both of those
+ * derivations quietly go out by a few pixels. The glyph is then lifted back up
+ * by transform, which doesn't affect layout.
+ */
+.hero-mark {
+  display: inline-block;
+  width: 0.78em;
+  height: 0;
+  margin-inline-end: 0.22em;
+  vertical-align: baseline;
+}
+
+.hero-mark > svg {
+  display: block;
+  width: 0.78em;
+  height: 0.78em;
+  overflow: visible;
+  color: var(--brand-blue);
+
+  /* Centred on the cap band: Recoleta's caps run 0.710em above the baseline,
+     so a 0.78em mark centres at -(0.710/2 + 0.78/2) = -0.745em. */
+  transform: translateY(-0.745em);
+}
+
+/* --- Buttons ------------------------------------------------------------ */
+
+/* Centred on the block, and therefore on the page — .hero-block is the measure
+   centred in a full-width stage, so the pair's axis is the viewport's: the same
+   one the headline above, the map behind and the partner strip below are all
+   drawn on. */
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.875rem;
+  margin-top: 2rem;
+}
+
+/* --- The map: full-bleed ground the composition stands on --------------- */
+
+/* Exists only to give the map something to be positioned against whose top
+   edge is the headline's top edge. .hero-stage's own top is no use for that —
+   it centres its contents, so the distance from the stage's top to the
+   headline's depends on how tall everything below the headline came out. This
+   box wraps the display block and nothing else, so its top IS the headline's,
+   and the map's offset can be stated in the headline's own ems. */
+.hero-field {
+  position: relative;
+  width: 100%;
+}
+
+/* The map is a backdrop, not a panel.
+ *
+ * It used to be a plate in a band of its own below the copy, sized as a
+ * fraction of the measure below 1280px and as 70vw above it — two different
+ * rules for one object, and a 384px -> 896px jump on a single pixel of window
+ * at the seam. Worse, stacked *under* the copy it had to pay for its own
+ * height, which is what forced it to be small: 30vw of height added to the
+ * section pushes everything below it off the screen. As a backdrop it costs no
+ * height at all, so it is free to be as large as the composition wants.
+ *
+ * One width rule for every viewport: 75vw. The floor underneath it is there
+ * for tall, narrow screens, where 75vw of a phone is a 292px-wide strip in an
+ * 800px fold — the second term asks how wide the map would have to be for its
+ * HEIGHT to reach 45% of the fold, and takes over when that is the bigger
+ * number. On any landscape screen the 75vw term wins outright and the floor
+ * never fires, so the two cases are one expression rather than a breakpoint.
+ *
+ * left:50% + translateX(-50%) rather than margins: it centres the map on the
+ * viewport regardless of whatever padding .hero-stage is carrying at that
+ * width, and lets the phone case overhang both edges symmetrically.
+ */
+.hero-map {
+  position: absolute;
+  z-index: 0;
+  inset-inline-start: 50%;
+  pointer-events: none;
+
+  /* Its aspect, the width it wants and the floor under its height are all
+     declared on .hero-stage and inherited here, because the hang that places
+     the whole composition is derived from them too — see there. In short:
+     75vw everywhere, with a floor of 55% of the fold for portrait screens,
+     where 75vw of a phone is a 292px strip in an 800px fold. 0.55 and not a
+     point more, so the floor can never outbid 75vw on a landscape screen: the
+     tightest case is a short 16:10 laptop, where 1280x800 leaves a 680px fold
+     and a 960px map and the floor would fire above 960 / (680 x 2.512) =
+     0.562.
+
+     Where the map's TOP edge sits.
+   *
+   * Anchored by the top and not by the centre, because the reference composes
+   * it that way: the crest of the dot arc comes up to just under the headline,
+   * the field runs down past the bottom of the screen, and the window — not a
+   * mask — is what ends it. Anchoring the centre instead (which is what this
+   * did first) puts the crest a third of the way up the headline and the map's
+   * bottom edge inside the fold, so it reads as a wide band floating in the
+   * middle of the section rather than as ground the composition stands on.
+   * Same map, same width, completely different object.
+   *
+   * The crest is placed against the headline itself rather than at a flat
+   * percentage of the fold. A percentage is only right at one composition
+   * height: the headline is two line boxes of --hero-fs, which is a fraction
+   * of the measure, which is a fraction of the viewport — so the headline's
+   * bottom edge moves with the window and a fixed 31% either climbs into the
+   * type or drops away from it. Two line boxes is `leading * 2`; the 0.2em back
+   * off that lifts the crest to graze the last baseline rather than starting
+   * below its descenders, which is where the reference has it.
+   *
+   * The two font-size regimes need the same statement written twice, because
+   * below 1024px the headline is set from --hero-fs-sm instead. Same formula,
+   * same two lines, different size — so it is written once as --hero-map-top on
+   * the stage and restated there in the media query. */
+  inset-block-start: var(--hero-map-top);
+
+  /* Taken back off the height the stage computed, rather than restated.
+   *
+   * 75vw alone is only "full bleed" on a landscape screen. A 2.512:1 map at
+   * 768px wide is 306px tall in a 904px fold — a third of the height, a thin
+   * strip sitting in the middle of the section rather than ground under it, so
+   * the height floor takes over there and the extra width simply runs off the
+   * sides and is clipped by the section, which is what a backdrop is supposed
+   * to do. Deriving the width from the height rather than the other way round
+   * is what keeps the hang above honest: the two cannot disagree about how
+   * tall this map is. */
+  width: calc(var(--hero-map-height) * var(--hero-map-ratio));
+
+  transform: translateX(-50%);
+}
+
+.hero-map > svg {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  /* Neutral ink rather than a tint: the map is ground, and the only colour in
+     the composition should be the asterisk, the full stop and the CTA. */
+  color: rgba(16, 20, 24, 0.16);
+
+  /* A thin feather on all four edges, multiplied together.
+   *
+   * At 75vw the map ends inside the page on every side rather than being cut by
+   * the window, so every edge is one the eye can find — and a dot field that
+   * stops on a dead straight line reads as a cropped image rather than as
+   * ground. The fades are deliberately narrow (9% top, 8% bottom, 6% each
+   * side): wide enough that no edge is a line, tight enough that they cost
+   * almost no map. What they eat is the sparse polar rows and open Pacific,
+   * which is why the continents look untouched.
+   *
+   * This is not the old radial mask returning. That one was a 72%-wide ellipse
+   * — it pulled the field in by a seventh of its width on each side and put a
+   * visible curved boundary inboard of the artwork, which is what read as a
+   * pale band down the edges. A 6% linear feather is a different animal: it
+   * softens the edge the map already has instead of manufacturing a new one.
+   *
+   * Where mask-composite isn't supported the layers add rather than intersect,
+   * which loses the feather and leaves the plain rectangle — the graceful
+   * direction to fail in. */
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0%, #000 9%, #000 92%, transparent 100%),
+    linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  mask-image:
+    linear-gradient(to bottom, transparent 0%, #000 9%, #000 92%, transparent 100%),
+    linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+/* --- The three stat pins on the map -------------------------------------- */
+
+/* A layer sitting in the map's own box, so a pin can be placed as a percentage
+ * of the artwork and land on the same dot at every window size — see the note
+ * in HeroMapStats.jsx for why the coordinates are the map's viewBox units.
+ *
+ * Deliberately not masked the way the svg beside it is. That feather exists so
+ * the dot field doesn't end on a dead straight line; run over a label it would
+ * just fade the type at one edge of the composition and not the other.
+ *
+ * Below lg it is gone. There the map is sized by its height floor rather than
+ * by 75vw — a short fold with the artwork overhanging both edges of the window
+ * — and three cards floating on a map that small is clutter rather than detail.
+ * The numbers are decoration here; they are not the only place they appear. */
+.hero-stats {
+  display: none;
+  position: absolute;
+  inset: 0;
+}
+
+@media (min-width: 1024px) {
+  .hero-stats {
+    display: block;
+  }
+}
+
+/* --- Bottom band: the partner marquee ------------------------------------ */
+
+.hero-ground {
+  display: grid;
+  justify-items: center;
+  gap: clamp(0.75rem, 1.75vh, 1.5rem);
+  width: 100%;
+
+  /* Holds the place the partner strip vacated when it was pinned to the map.
+     Below lg the stage centres its flow, so letting this collapse to nothing
+     would pull the headline — and the map anchored under it — a whole banner's
+     height down the fold. 10rem is that banner: 2rem of section padding, a
+     1rem label with 1.5rem under it, 0.5rem of gap and the 5rem logo row.
+     Above lg the stage is hung from the top and this changes nothing. */
+  min-height: 10rem;
+
+  /* Above the map, like everything else in the stage. */
+  position: relative;
+  z-index: 1;
+}
+
+.hero-ground__meta {
+  display: none;
+  width: 100%;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+/* Pinned to the map, not to the flow.
+ *
+ * The strip lives inside .hero-field for the same reason the map does: that
+ * box's top edge IS the headline's top edge, so the map's offset and the
+ * marquee's can be written in the same terms and cannot drift apart. Both
+ * numbers are on .hero-stage — see --hero-partners-line for why the flow
+ * position it used to take was never the South America line at more than one
+ * window size.
+ *
+ * `translate` and not `transform` for the lift, because the reveal below
+ * animates `transform` on this element. The two are separate properties and
+ * compose, so the strip can hold its offset while it slides up into place.
+ *
+ * It keeps the headline's measure — the same number the composition above is
+ * built from — so the logos stay inside the block's column while the map
+ * behind them runs edge to edge. */
+.hero-partners {
+  position: absolute;
+  z-index: 2;
+  inset-inline: 0;
+  inset-block-start: calc(
+    var(--hero-map-top) + var(--hero-map-height) * var(--hero-partners-line)
+  );
+  translate: 0 calc(var(--hero-partners-drop) - var(--hero-partners-lift));
+
+  width: min(var(--hero-measure), 100%);
+  margin-inline: auto;
+}
+
+.hero-meta {
+  font-size: 0.8125rem;
+  line-height: 1.2;
+  color: color-mix(in oklch, var(--brand-ink), transparent 40%);
+  transition: color 0.2s ease;
+}
+
+.hero-meta--scroll {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  text-align: right;
+}
+
+a.hero-meta {
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid currentColor;
+}
+
+a.hero-meta:hover {
+  color: var(--brand-ink);
+}
+
+/* --- The proportional composition --------------------------------------- */
+
+@media (min-width: 1024px) {
+  .hero-block {
+    width: var(--hero-measure);
+  }
+
+  /* The measure, not the full-bleed map behind it, so the two words sit at the
+     edges of the composition rather than in the corners of the screen. */
+  .hero-ground__meta {
+    display: flex;
+    width: var(--hero-measure);
+  }
+
+  /* Centring comes from the base rule; only the size and leading change here. */
+  .hero-display {
+    font-size: var(--hero-fs);
+    line-height: var(--hero-leading);
+  }
+
+  /* Same statement as the base rule, in the desktop headline's size. The map
+     reads it through inheritance, and so does the hang — which is why this is
+     on the stage rather than on .hero-map. */
+  .hero-stage {
+    --hero-map-top: calc(var(--hero-fs) * (var(--hero-leading) * 2 - 0.2));
+
+    /* The headline's distance from the nav, stated rather than derived — see
+       --hero-gap-top. It is the same 175px on a 1366 laptop, a 1920 desktop
+       and a 2560 monitor, so the h1 sits where the reference puts it instead
+       of climbing as the window widens. */
+    padding-top: var(--hero-gap-top);
+
+    /* The map closes the fold from below, now that the gap above no longer
+       flexes to let it.
+     *
+     * Its top edge is fixed by the two rules above (gap + map-top), so the
+     * height that puts its foot on the fold's bottom edge is just what is
+     * left. Take it only when it is MORE than the 75vw the map would be
+     * anyway: on a wide, short window 75vw already overshoots the fold and the
+     * dot field should run off the bottom of the screen, the way the reference
+     * has it, rather than being shrunk to fit.
+     *
+     * Capped at the height a full-bleed map would have, so it can grow from
+     * 75vw to at most 100vw. Past that the artwork is wider than the window
+     * and the far edges of the map — the Pacific either side — start being
+     * cropped, which is a worse trade than the band of grid the cap leaves
+     * under it on a very tall screen. At 1920x1080 the fill term wants 676px
+     * against a 764px cap, so it lands well inside; on a 2560x1440 the cap
+     * binds and the foot stops 16px short of the fold. */
+    --hero-map-height: max(
+      calc(var(--hero-map-width) / var(--hero-map-ratio)),
+      min(
+        calc(100vw / var(--hero-map-ratio)),
+        calc(var(--hero-fold) - var(--hero-gap-top) - var(--hero-map-top))
+      )
+    );
+
+    /* --- The strip's desktop drop ---------------------------------------
+     *
+     * On a large screen the South America line alone is not enough to place
+     * the strip, because it is the only part of the fold with no relationship
+     * to the headline: the map's height is 75vw, the headline's is capped at
+     * 4.5rem, so the air between the CTAs and the logos is whatever the
+     * window's width happens to leave — 229px at 1920x1080, 135px at 1440x900.
+     * The interval reads as arbitrary at both, which is what it is.
+     *
+     * So the strip is dropped by exactly one headline line box below the
+     * latitude — 0.86em of the display size, the same leading that separates
+     * "HANDS-ON LABS" from "FOR ENTERPRISE LEARNING." above it. The interval
+     * under the h1 is then borrowed from the h1 rather than measured off the
+     * map, and it scales with the type instead of with the window: the strip
+     * holds the same relationship to the headline at every desktop width, and
+     * moves only if the headline's own size or leading does.
+     *
+     * There are two caps, and they are different edges. Below the latitude
+     * there is (1 - line) of map left, and the strip's own foot hangs 3.5rem
+     * under the line it rides — half the 5rem logo row plus the banner's 1rem
+     * of padding, the mirror of the measurement --hero-partners-lift is built
+     * from. The first cap spends no more than that, so the logos never cross
+     * the map's bottom edge.
+     *
+     * The map's foot is NOT the bottom of the fold, which is what this used to
+     * assume and is the bug that assumption caused. The two coincide only while
+     * the fold-filling term wins in --hero-map-height. On a short, wide window
+     * the 75vw term wins instead — the map is meant to be taller than the fold
+     * there and run off the bottom of the screen — so its foot is below the
+     * clip edge, and a cap measured against it drops the strip into the
+     * overhang, where `overflow: hidden` on the hero section cuts it in half.
+     * That is the sliced logo row teammates saw on 1366x768 and 1280x720: at
+     * 1366x768 the map overhangs the fold by 44px and the strip lost 33px of
+     * its box, at 1366x728 it lost the logos outright. (The note on
+     * --hero-gap-top claiming the 28% term keeps the strip inside the fold at
+     * 1280x720 was measuring the same wrong edge; it doesn't.)
+     *
+     * So the third term is the fold's own bottom edge, stated from the same
+     * origin the strip is positioned from: the stage's top padding, then the
+     * map's top, then the latitude, then the strip's 3.5rem foot. Whatever is
+     * left is all the drop there is to spend. When the map fits the fold this
+     * is exactly equal to the map-foot term — substitute
+     * --hero-map-height = fold - gap-top - map-top and the two reduce to the
+     * same expression — so it changes nothing on a full-height desktop and
+     * binds only on the short windows where it is the real limit. On those it
+     * can reach zero or just past it, which is the strip giving the drop back
+     * and riding the latitude itself rather than below it. */
+    --hero-partners-drop: min(
+      calc(var(--hero-fs) * var(--hero-leading)),
+      calc(
+        var(--hero-map-height) * (1 - var(--hero-partners-line)) - 3.5rem
+      ),
+      calc(
+        var(--hero-fold) - var(--hero-gap-top) - var(--hero-map-top) -
+          var(--hero-map-height) * var(--hero-partners-line) - 3.5rem
+      )
+    );
+  }
+
+     /* The two lines are a design decision from here up, so they hold: line 2
+     is 96% of the measure and line 1, mark included, is 66.1% — see the header.
+     Below this breakpoint a 13.3em line has nowhere to go, so it breaks — at
+     the point `.hero-tail` states, not wherever the window puts it. */
+  .hero-line {
+    white-space: nowrap;
+  }
+
+  /* Back to an inline run, so line 2 is one line and the block is the two the
+     desktop composition is derived from. */
+  .hero-tail {
+    display: inline;
+  }
+
+  /* Larger than the caps beside it, as in the reference. Only the vertical
+     offset is set here: horizontally the mark is an ordinary inline box that
+     the line centres along with the letters, so the width and the gap after it
+     come from the base rule at the desktop size — 0.86em and 0.26em. Centred on
+     the cap band as before: -(0.710/2 + 0.86/2) = -0.785em. */
+  .hero-mark {
+    width: 0.86em;
+    margin-inline-end: 0.26em;
+  }
+
+  .hero-mark > svg {
+    width: 0.86em;
+    height: 0.86em;
+    transform: translateY(-0.785em);
+  }
+
+  /* Centring comes from the base rule; only the air above it changes here. */
+  .hero-cta {
+    margin-top: clamp(1.75rem, 3.5vh, 2.75rem);
+  }
+}
+
+/* --- Below lg: stacked, not layered -------------------------------------
+ *
+ * The backdrop composition only works on a landscape screen. On a portrait one
+ * the height floor in --hero-map-height takes over and sizes the map to 55% of
+ * the fold, which on a 390px phone is a ~1000px-wide map: a zoomed-in slice of
+ * the Atlantic sitting behind the buttons, not a world. And the partner strip,
+ * pinned to a latitude on that map, landed on the CTAs.
+ *
+ * So below lg the three stop overlapping and stack in reading order —
+ * headline and buttons, then the whole map edge to edge, then the logos —
+ * inside the same .hero-field, so the reveal and the gate rules are untouched.
+ * 100vw rather than 100%: the stage carries side padding and the map should
+ * run to the glass. A flex item wider than its centred column overflows both
+ * sides equally, so it stays on the viewport's axis. */
+@media (max-width: 1023.98px) {
+  .hero-field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-map {
+    position: relative;
+    order: 1;
+    inset: auto;
+    transform: none;
+    width: 100vw;
+    max-width: none;
+    margin-top: clamp(1.5rem, 6vw, 2.5rem);
+  }
+
+  .hero-partners {
+    position: relative;
+    order: 2;
+    inset: auto;
+    translate: none;
+    width: 100%;
+  }
+
+  /* It was holding the strip's height in the flow for the layered layout; the
+     strip is in the flow itself now, and the meta line it also carries is
+     desktop-only — so below lg the box is empty and would only add a gap. */
+  .hero-ground {
+    display: none;
+  }
+}
+
+/* There was a @container query here that floated the CTA pair off into the air
+   a short indented third line left free on the right, once the block was wide
+   enough to hold them (1224px). It is gone with that line: everything in the
+   composition is centred on one axis now, so nothing depends on the measure
+   crossing a threshold, and .hero-block no longer needs to be a container
+   either — the lede that was sized in cqi against it is gone too. */
+
+/* ============================================================
+   Cloud4Green — site preloader
+
+   The styles live further down, with the sheet/frame/glint markup they
+   belong to. What stood here was the curtain that preceded them — the
+   panel that lifted on a translate, with its rounded lip, its particle
+   field, its typed tagline and the wordmark lockup under the hairline.
+   The component behind all of it is gone, and the block was outliving it
+   in a way that was not inert: `.c4g-pre` still carried
+   `height: calc(100% + 160px)`, which the live rule does not override, so
+   the panel ran past the fold and `place-items: center` was centring the
+   copy 80px below the middle of the screen. Worse, `.c4g-pre__word` used
+   to mean the wordmark and now means one word of a line, so every word of
+   both lines was being set in Palatino Bold at up to 62px.
+   ============================================================ */
+
+/* --- while the curtain is down -------------------------------------- */
+
+/* The scroll lock is `overflow: hidden` on <body>, which takes the scrollbar
+   away with it. Reserving the gutter permanently means the page doesn't jump
+   sideways by a scrollbar's width the moment the curtain lifts — which was
+   the last visible seam in the reveal, and the one that read as a glitch
+   rather than as an animation. */
+html {
+  scrollbar-gutter: stable;
+}
+
+/* The hero's map is 288 SVG nodes animating opacity and transform forever, all
+   of them on the main thread (Blink won't hand a transform on an SVG child to
+   the compositor). Under the preloader they are drawing frames nobody can see,
+   out of the budget the preloader itself needs. Paused, not removed: the
+   phases stay where they are, so the field is already mid-rotation when the
+   curtain comes up rather than strobing all 48 cells together on frame one. */
+html[data-preloading="true"] .c4g-map-blink,
+html[data-preloading="true"] .c4g-map-glow,
+html[data-preloading="true"] .c4g-map-spark {
+  animation-play-state: paused;
+}
+
+/* ============================================================
+   Hero — the reveal the curtain lifts onto
+   ============================================================ */
+
+/* The hero is what the preloader hands over to, so it is composed *for* that
+   handover: laid out and painted the whole time the curtain is down, held at
+   opacity 0, and brought up in three beats once the panel is clear. Because
+   the layout is already settled underneath, nothing reflows at the reveal —
+   only opacity and transform move, both compositor-owned.
+
+   Delays are relative to the class landing, which Home fires from the
+   preloader's own exit-complete, so the first beat starts on an idle thread.
+
+   No-JS / failure floor: `.hero-stage` alone is fully visible. The hidden
+   state is only applied by `.hero-stage--gate`, which React adds on mount, so
+   a hero that never receives the reveal still shows. */
+/* .hero-partners is listed alongside .hero-ground rather than nested inside it
+   — it is pinned to the map now, so it sits in .hero-field and no longer
+   inherits the ground's fade. It still comes up on the ground's beat. */
+/* The headline does not fade. It is masked to its own line boxes (see
+ * `.hero-line`) and slides up out of them, one line after the other, at full
+ * opacity the whole way — which is the effect the display type on both
+ * bouayaben.com and phobos.com.au is running, and it is a different thing from
+ * a fade-up. The mask is already doing the reveal; ramping opacity on top of it
+ * only makes the mask look like it isn't tight.
+ *
+ * 140% and not the references' 110%, because the clip edge the line enters
+ * through has been pushed 0.16em below the line box to save the descenders, so
+ * the start has to clear the box *and* that. At the 0.9em leading these lines
+ * are set on, 1.4 × 0.9em = 1.26em against a 1.06em clip edge — 0.2em of
+ * clearance, which holds at both font-size regimes since both terms scale with
+ * the same em.
+ *
+ * 1.2s on expo.out: the curve spends about 70% of its travel in the first
+ * quarter of the time, so the line arrives in roughly 300ms and then settles
+ * for the rest. The settle is the whole point — shorten it to make it feel
+ * snappier and it stops reading as expensive. */
+.hero-stage--gate .hero-line__inner {
+  transform: translateY(140%);
+}
+
+.hero-stage--gate.is-revealed .hero-line__inner {
+  transform: none;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Line 2 chases line 1 rather than leaving with it. 0.12s is the references'
+   stagger; below it the two lines read as one block being pushed up, above it
+   they read as two separate events. */
+.hero-stage--gate.is-revealed .hero-line--1 .hero-line__inner {
+  transition-delay: 0.1s;
+}
+
+.hero-stage--gate.is-revealed .hero-line--2 .hero-line__inner {
+  transition-delay: 0.22s;
+}
+
+/* Everything that is not display type still fades and rises: the buttons under
+ * the headline, the partner strip on the map, the meta line at the foot.
+ *
+ * `.hero-cta` here rather than `.hero-block` — the block wraps the headline as
+ * well, and fading it would have put an opacity ramp over the masked lines and
+ * cancelled them out. */
+.hero-stage--gate .hero-cta,
+.hero-stage--gate .hero-ground,
+.hero-stage--gate .hero-partners {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.hero-stage--gate.is-revealed .hero-cta,
+.hero-stage--gate.is-revealed .hero-ground,
+.hero-stage--gate.is-revealed .hero-partners {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* The map is ground, so it comes up first and on its own curve — a straight
+   fade with no travel, because ground that slides reads as a layer sitting on
+   the page rather than as the page itself. */
+.hero-stage--gate .hero-map {
+  opacity: 0;
+}
+
+.hero-stage--gate.is-revealed .hero-map {
+  opacity: 1;
+  transition: opacity 1.1s ease-out;
+}
+
+/* Behind line 2, not behind line 1 — the buttons should be arriving while the
+   headline is still settling, not waiting for it to finish. Line 2 leaves at
+   0.22s and is visually done by about 0.52s, so 0.42s puts the CTAs into the
+   tail of it and the strip below into the tail of them. */
+.hero-stage--gate.is-revealed .hero-cta {
+  transition-delay: 0.42s;
+}
+
+.hero-stage--gate.is-revealed .hero-ground,
+.hero-stage--gate.is-revealed .hero-partners {
+  transition-delay: 0.55s;
+}
+
+/* The stat pins need no reveal of their own. They run on the map's blink beat
+ * (see HeroMapStats.jsx), so they are already hidden for most of every cycle
+ * and arrive by popping when their cell lights — and the map fading up
+ * underneath them carries them in.
+ *
+ * They must NOT be given one, either. Both the ring and the card are placed
+ * with Tailwind translate utilities, and Tailwind v4 writes those to the
+ * `translate` property rather than to `transform` — so a reveal that animated
+ * `translate` here would cancel the centring on one and the side-flip on the
+ * other. That is why the pop in HeroMapStats.jsx moves nothing and animates
+ * `opacity` and `scale` alone. */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-stage--gate .hero-cta,
+  .hero-stage--gate .hero-ground,
+  .hero-stage--gate .hero-partners,
+  .hero-stage--gate .hero-map {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hero-stage--gate .hero-line__inner,
+  .hero-stage--gate.is-revealed .hero-line__inner {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ============================================================
+   Enterprise Labs — request → provision → validate
+   ------------------------------------------------------------
+   One 11s cycle. Every animation runs the full cycle length and
+   uses percentage keyframes, so the whole scene stays in phase
+   with no JS clock. The table below is the only thing you need
+   to read to retime it:
+
+        s  %          beat
+      0.4  3.6   thought card starts to rise
+      1.2 10.9   he types
+      2.5 22.7   result row lands
+      3.1 28.2   card dismisses
+      3.2 29.0   request leaves the laptop
+      4.5 40.9   request arrives; container wakes
+      4.6 41.8   chosen lab lights, rail fills
+      6.0 54.5   data heads back
+      7.3 66.4   it lands
+      7.4 67.3   ready callout pops
+      9.8 89.1   scene resets for the loop
+
+   Percent = seconds / 11 × 100.
+   ============================================================ */
+
+.c4g-lab {
+  --cycle: 11s;
+
+  --ink: #0f1b2e;
+  --hair: #c8d1de;
+  --muted: #7a8699;
+  --accent: #0b5cff;
+  --tint: #f1f5ff;
+  --ok: #12a150;
+  --paper: #ffffff;
+  --wire: #d7dfec;
+
+  width: 100%;
+}
+
+.c4g-lab svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Fill-the-box variant.
+   The default above is width-led: the caller sets a width and the height
+   falls out of the 12:5 viewBox. That is wrong for a full-height section,
+   where the diagram has to take the height the type block leaves over and
+   the width is what should fall out. Here the page sizes the wrapper and
+   the svg fills it, scaling down and centring itself inside via its own
+   preserveAspectRatio, so it can never overflow the box in either axis.
+   Both rules have to be unlayered like the ones above, or the width:100%
+   in .c4g-lab wins on source order and the height is ignored. */
+.c4g-lab--fit,
+.c4g-lab--fit svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Strokes ---------------------------------------------------- */
+.c4g-lab .s-heavy {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.c4g-lab .s-fine {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.c4g-lab .s-hair {
+  fill: none;
+  stroke: var(--hair);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* A presentation attribute (fill="...") loses to any CSS rule, so the
+   stroke classes above would silently blank out every fill on the shapes
+   that carry them. Anything that needs to knock out what is behind it
+   takes this instead — it comes later, so it wins. */
+.c4g-lab .s-fill  { fill: #fafaf7; }
+.c4g-lab .s-paper { fill: #ffffff; }
+
+/* Type ------------------------------------------------------- */
+.c4g-lab text {
+  font-family: inherit;
+}
+.c4g-lab .t-micro {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  fill: var(--muted);
+}
+.c4g-lab .t-body {
+  font-size: 13.5px;
+  font-weight: 600;
+  fill: var(--ink);
+}
+.c4g-lab .t-card {
+  font-size: 13px;
+  font-weight: 700;
+  fill: var(--ink);
+}
+
+/* The dotted wire. The pale line is always there; the blue copy
+   sits on top behind a moving gradient window, which is what
+   makes the pulse read as travelling rather than blinking. */
+.c4g-lab .wire {
+  fill: none;
+  stroke-width: 4.6;
+  stroke-linecap: round;
+  stroke-dasharray: 0.1 14;
+}
+.c4g-lab .wire--base { stroke: var(--wire); }
+.c4g-lab .wire--live { stroke: var(--accent); }
+
+/* ============================================================
+   Everything below only runs once the section is on screen, and
+   parks the instant it leaves — an idle tab should not be
+   compositing a loop nobody is looking at.
+   ============================================================ */
+.c4g-lab [class*="a-"] { animation-play-state: paused; }
+.c4g-lab.is-live [class*="a-"] { animation-play-state: running; }
+
+.c4g-lab [class*="a-"] {
+  animation-duration: var(--cycle);
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  transform-box: view-box;
+}
+
+/* --- thought card ------------------------------------------- */
+.c4g-lab .a-think {
+  animation-name: think;
+  transform-origin: 320px 214px;
+}
+@keyframes think {
+  0%, 3.6%   { opacity: 0; transform: scale(0.8); }
+  6%         { animation-timing-function: cubic-bezier(0.34, 1.4, 0.5, 1); }
+  10.5%      { opacity: 1; transform: scale(1); }
+  28.2%      { opacity: 1; transform: scale(1); }
+  32.8%      { opacity: 0; transform: scale(0.9); }
+  100%       { opacity: 0; transform: scale(0.9); }
+}
+
+/* --- typing -------------------------------------------------- */
+.c4g-lab .a-type { animation-name: type; }
+@keyframes type {
+  0%, 10.9% { width: 0px; animation-timing-function: steps(11, end); }
+  21.5%     { width: 74px; }   /* the string's own measured width */
+  100%      { width: 74px; }
+}
+
+.c4g-lab .a-caret { animation-name: caret; }
+/* a <g>, so it travels on transform rather than the rect's x —
+   transform is the only thing here the compositor can own */
+@keyframes caret {
+  0%      { transform: translateX(0);    opacity: 0; }
+  10.85%  { transform: translateX(0);    opacity: 0; }
+  10.9%   { transform: translateX(0);    opacity: 1; animation-timing-function: steps(11, end); }
+  21.5%   { transform: translateX(74px); opacity: 1; }
+  24%     { transform: translateX(74px); opacity: 0; }
+  100%    { transform: translateX(74px); opacity: 0; }
+}
+.c4g-lab .a-blink {
+  animation-name: blink;
+  animation-duration: 1s;
+  animation-timing-function: steps(2, jump-none);
+}
+@keyframes blink { 0% { opacity: 1; } 100% { opacity: 0.1; } }
+
+/* --- result row ---------------------------------------------- */
+.c4g-lab .a-result {
+  animation-name: result;
+  transform-origin: 490px 158px;
+}
+@keyframes result {
+  0%, 22.7% { opacity: 0; transform: scale(0.94) translateY(4px); }
+  24%       { animation-timing-function: cubic-bezier(0.34, 1.4, 0.5, 1); }
+  26.5%     { opacity: 1; transform: scale(1) translateY(0); }
+  100%      { opacity: 1; transform: scale(1) translateY(0); }
+}
+.c4g-lab .a-flash { animation-name: flash; }
+@keyframes flash {
+  0%, 26.4%   { fill: var(--tint); }
+  26.5%       { fill: var(--accent); }
+  28.4%       { fill: var(--accent); }
+  28.5%, 100% { fill: var(--tint); }
+}
+.c4g-lab .a-flashText { animation-name: flashText; }
+.c4g-lab .a-flashStroke { animation-name: flashStroke; }
+@keyframes flashStroke {
+  0%, 26.4%   { stroke: var(--accent); }
+  26.5%       { stroke: #ffffff; }
+  28.4%       { stroke: #ffffff; }
+  28.5%, 100% { stroke: var(--accent); }
+}
+@keyframes flashText {
+  0%, 26.4%   { fill: var(--accent); }
+  26.5%       { fill: #ffffff; }
+  28.4%       { fill: #ffffff; }
+  28.5%, 100% { fill: var(--accent); }
+}
+
+/* --- the pulse window over the wire --------------------------- */
+.c4g-lab .a-flow { animation-name: flow; }
+@keyframes flow {
+  0%, 29%  { transform: translateX(-330px); animation-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1); }
+  41%      { transform: translateX(830px); }
+  54.5%    { transform: translateX(830px); animation-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1); }
+  66.4%    { transform: translateX(-330px); }
+  100%     { transform: translateX(-330px); }
+}
+
+/* --- the packet riding the wire ------------------------------- */
+/* Path is three axis-aligned legs (down 50, right 508, up 122),
+   so it is expressed as plain translates — no offset-path, and
+   nothing for the compositor to rasterise. */
+.c4g-lab .a-packet { animation-name: packet; }
+@keyframes packet {
+  0%, 28.9%  { opacity: 0; transform: translate(0px, 0px); }
+  29%        { opacity: 1; transform: translate(0px, 0px); animation-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1); }
+  29.9%      { transform: translate(0px, 50px); }
+  38.9%      { transform: translate(508px, 50px); }
+  41%        { opacity: 1; transform: translate(508px, -72px); }
+  41.1%      { opacity: 0; transform: translate(508px, -72px); }
+  54.4%      { opacity: 0; transform: translate(508px, -72px); }
+  54.5%      { opacity: 1; animation-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1); }
+  56.6%      { transform: translate(508px, 50px); }
+  65.5%      { transform: translate(0px, 50px); }
+  66.4%      { opacity: 1; transform: translate(0px, 0px); }
+  66.5%, 100% { opacity: 0; transform: translate(0px, 0px); }
+}
+
+/* --- what is on the wire, named ---------------------------------- */
+.c4g-lab .a-capOut { animation-name: capOut; }
+@keyframes capOut {
+  0%, 29.5% { opacity: 0; }
+  32%       { opacity: 1; }
+  40%       { opacity: 1; }
+  41.5%     { opacity: 0; }
+  100%      { opacity: 0; }
+}
+.c4g-lab .a-capBack { animation-name: capBack; }
+@keyframes capBack {
+  0%, 55%  { opacity: 0; }
+  57.5%    { opacity: 1; }
+  65%      { opacity: 1; }
+  66.5%    { opacity: 0; }
+  100%     { opacity: 0; }
+}
+
+/* --- container reacts ----------------------------------------- */
+.c4g-lab .a-box { animation-name: box; }
+@keyframes box {
+  0%, 40.8%   { stroke: var(--ink); }
+  41%         { stroke: var(--accent); }
+  47%         { stroke: var(--accent); }
+  49%, 100%   { stroke: var(--ink); }
+}
+.c4g-lab .a-ring {
+  animation-name: ring;
+  transform-origin: 955px 248px;
+}
+@keyframes ring {
+  0%, 40.9% { opacity: 0; transform: scale(0.97); }
+  41%       { opacity: 0.9; transform: scale(0.97); animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
+  47%       { opacity: 0; transform: scale(1.045); }
+  100%      { opacity: 0; transform: scale(1.045); }
+}
+
+/* the catalogue scan — one keyframe set, staggered per chip by
+   nudging each chip's delay, which is the only animation on it */
+.c4g-lab .a-scan {
+  animation-name: scan;
+  animation-delay: calc(var(--i) * 0.07s);
+}
+@keyframes scan {
+  0%, 40.5%   { stroke: var(--hair); }
+  41.5%       { stroke: #9dbbff; }
+  43.5%       { stroke: #9dbbff; }
+  45%, 100%   { stroke: var(--hair); }
+}
+
+.c4g-lab .a-chipBox { animation-name: chipBox; }
+@keyframes chipBox {
+  0%, 41.5%   { stroke: var(--hair); fill: var(--paper); }
+  43%         { stroke: var(--accent); fill: var(--tint); }
+  89%         { stroke: var(--accent); fill: var(--tint); }
+  92%, 100%   { stroke: var(--hair); fill: var(--paper); }
+}
+.c4g-lab .a-chipInk { animation-name: chipInk; }
+@keyframes chipInk {
+  0%, 41.5%   { stroke: var(--ink); }
+  43%         { stroke: var(--accent); }
+  89%         { stroke: var(--accent); }
+  92%, 100%   { stroke: var(--ink); }
+}
+.c4g-lab .a-chipLbl { animation-name: chipLbl; }
+@keyframes chipLbl {
+  0%, 41.5%   { fill: var(--muted); }
+  43%         { fill: var(--accent); }
+  89%         { fill: var(--accent); }
+  92%, 100%   { fill: var(--muted); }
+}
+
+/* --- provisioning rail ----------------------------------------- */
+.c4g-lab .a-rail { animation-name: rail; }
+@keyframes rail {
+  0%, 41.8% { width: 0px; animation-timing-function: cubic-bezier(0.3, 0.8, 0.4, 1); }
+  52%       { width: 346px; }
+  89%       { width: 346px; }
+  92%, 100% { width: 0px; }
+}
+
+/* --- status pill ------------------------------------------------ */
+.c4g-lab .a-pillIdle { animation-name: pillIdle; }
+@keyframes pillIdle {
+  0%, 40.5% { opacity: 1; }
+  41%       { opacity: 0; }
+  91.5%     { opacity: 0; }
+  92.5%     { opacity: 1; }
+  100%      { opacity: 1; }
+}
+.c4g-lab .a-pillWork { animation-name: pillWork; }
+@keyframes pillWork {
+  0%, 40.5% { opacity: 0; }
+  41%       { opacity: 1; }
+  65.5%     { opacity: 1; }
+  66.5%     { opacity: 0; }
+  100%      { opacity: 0; }
+}
+.c4g-lab .a-pillLive { animation-name: pillLive; }
+@keyframes pillLive {
+  0%, 65.5% { opacity: 0; }
+  66.5%     { opacity: 1; }
+  91.5%     { opacity: 1; }
+  92.5%     { opacity: 0; }
+  100%      { opacity: 0; }
+}
+
+/* --- ready callout ---------------------------------------------- */
+.c4g-lab .a-done {
+  animation-name: done;
+  transform-origin: 236px 208px;
+}
+@keyframes done {
+  0%, 67.3% { opacity: 0; transform: scale(0.78); }
+  69%       { animation-timing-function: cubic-bezier(0.34, 1.45, 0.5, 1); }
+  73.5%     { opacity: 1; transform: scale(1); }
+  89.1%     { opacity: 1; transform: scale(1); }
+  93%       { opacity: 0; transform: scale(0.9); }
+  100%      { opacity: 0; transform: scale(0.9); }
+}
+
+/* --- the badge on his screen ------------------------------------- */
+.c4g-lab .a-badge { animation-name: badge; }
+@keyframes badge {
+  0%, 67.5% { fill: var(--accent); }
+  69%       { fill: var(--ok); }
+  90%       { fill: var(--ok); }
+  92%, 100% { fill: var(--accent); }
+}
+
+/* --- idle life --------------------------------------------------- */
+.c4g-lab .a-steam {
+  animation-name: steam;
+  animation-duration: 3.4s;
+  animation-timing-function: ease-in-out;
+}
+@keyframes steam {
+  0%   { transform: translate(0, 0) scaleX(1);     opacity: 0.35; }
+  35%  { transform: translate(2px, -3px) scaleX(-1); opacity: 0.85; }
+  70%  { transform: translate(-1px, -6px) scaleX(1); opacity: 0.5; }
+  100% { transform: translate(0, 0) scaleX(1);     opacity: 0.35; }
+}
+
+/* ============================================================
+   Reduced motion: hold the finished state. The story is a nice
+   to have; the diagram still has to say what it says.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .c4g-lab [class*="a-"] { animation: none !important; }
+  .c4g-lab .a-think,
+  .c4g-lab .a-packet,
+  .c4g-lab .a-ring,
+  .c4g-lab .a-pillIdle,
+  .c4g-lab .a-pillWork { opacity: 0; }
+  .c4g-lab .a-done,
+  .c4g-lab .a-result,
+  .c4g-lab .a-pillLive { opacity: 1; }
+  .c4g-lab .a-rail { width: 346px; }
+  .c4g-lab .a-chipBox { stroke: var(--accent); fill: var(--tint); }
+  .c4g-lab .a-chipInk { stroke: var(--accent); }
+  .c4g-lab .a-chipLbl { fill: var(--accent); }
+  .c4g-lab .a-badge { fill: var(--ok); }
+}
+
+/* ============================================================
+   On-dark variant — the illustration standing on a photograph
+   rather than on the cream ground.
+
+   Almost all of it is the token block: every keyframe above is
+   already written against --ink / --accent / --hair / --paper /
+   --tint / --ok / --muted, so redefining those nine values
+   re-colours the whole loop, animations included. What follows
+   the tokens is only the handful of shapes that carry a literal
+   fill="" or stroke="" in Labflow.jsx — a presentation attribute
+   loses to any CSS rule, so naming the element is enough.
+
+   The cards go translucent rather than opaque: the panel this
+   sits in is backdrop-blurred glass, and solid white cards on it
+   would read as a second, unrelated surface.
+
+   Must stay last — these rules tie with the base ones on
+   specificity, so source order is what decides them.
+   ============================================================ */
+.c4g-lab--on-dark {
+  --ink: #eaf1ff;
+  --hair: rgba(226, 236, 255, 0.3);
+  --muted: #a9bbdb;
+  --accent: #7ca8ff;
+  --tint: rgba(124, 168, 255, 0.22);
+  --ok: #38d07c;
+  --paper: rgba(255, 255, 255, 0.07);
+  --wire: rgba(226, 236, 255, 0.22);
+
+  /* Not in the base block: the knock-out fill and the rail's
+     unfilled track are literals there (#fafaf7 / #EDF0F5). */
+  --knockout: rgba(9, 16, 30, 0.62);
+  --track: rgba(255, 255, 255, 0.14);
+}
+
+.c4g-lab--on-dark .s-fill { fill: var(--knockout); }
+.c4g-lab--on-dark .s-paper { fill: var(--paper); }
+
+/* Cards, panels and the chips' resting fill. */
+.c4g-lab--on-dark .s-card,
+.c4g-lab--on-dark .a-box,
+.c4g-lab--on-dark .a-scan { fill: var(--paper); }
+.c4g-lab--on-dark .s-card { stroke: var(--hair); }
+
+.c4g-lab--on-dark .s-glyph { stroke: var(--ink); }
+.c4g-lab--on-dark .s-ok { fill: var(--ok); }
+.c4g-lab--on-dark .s-track { fill: var(--track); }
+
+/* Accent-blue marks whose colour never animates. */
+.c4g-lab--on-dark .a-packet circle,
+.c4g-lab--on-dark .a-rail { fill: var(--accent); }
+.c4g-lab--on-dark .a-ring,
+.c4g-lab--on-dark .a-flash { stroke: var(--accent); }
+.c4g-lab--on-dark .a-capOut,
+.c4g-lab--on-dark .a-capBack { fill: var(--accent); }
+.c4g-lab--on-dark .a-blink { fill: var(--ink); }
+
+/* Status pills. */
+.c4g-lab--on-dark .a-pillIdle rect { fill: rgba(255, 255, 255, 0.1); }
+.c4g-lab--on-dark .a-pillWork rect { fill: var(--tint); }
+.c4g-lab--on-dark .a-pillLive rect { fill: rgba(56, 208, 124, 0.18); }
+.c4g-lab--on-dark .a-pillIdle text { fill: var(--muted); }
+.c4g-lab--on-dark .a-pillWork text { fill: var(--accent); }
+.c4g-lab--on-dark .a-pillLive text { fill: var(--ok); }
+
+
+/* ============================================================
+   Two-row testimonial marquee
+   ------------------------------------------------------------
+   One keyframe, driven entirely by custom properties, so a row
+   is configured from the JSX rather than by adding a class per
+   speed or direction.
+   ============================================================ */
+
+.c4g-marquee {
+  --duration: 48s;
+  --repeats: 4;
+  --gap: 1rem;
+  --fade: 7%;
+
+  position: relative;
+  overflow: hidden;
+
+  /* Vertical breathing room *inside* the clip, cancelled outside it.
+     `overflow: hidden` clips both axes, so without this the hover
+     shadow on a card gets sliced off at the top and bottom edge. */
+  padding-block: 0.85rem;
+  margin-block: -0.85rem;
+
+  /* A mask rather than two gradient overlays: it fades to genuine
+     transparency, so it keeps working whatever the section sits on,
+     and it is two fewer DOM nodes per row. */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--fade),
+    #000 calc(100% - var(--fade)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--fade),
+    #000 calc(100% - var(--fade)),
+    transparent 100%
+  );
+}
+
+.c4g-marquee__track {
+  display: flex;
+  width: max-content;
+  gap: var(--gap);
+  animation: c4g-marquee-x var(--duration) linear infinite;
+  will-change: transform;
+}
+
+/* Right-to-left is the same animation played backwards — the loop is
+   seamless from either end, so there is no second keyframe to keep
+   in sync with this one. */
+.c4g-marquee__track--reverse {
+  animation-direction: reverse;
+}
+
+/* The track holds `--repeats` copies of the row, so travelling
+   -100%/--repeats of its own width is exactly one copy: the frame it
+   lands on is identical to the frame it started from. */
+@keyframes c4g-marquee-x {
+  to {
+    transform: translate3d(calc(-100% / var(--repeats)), 0, 0);
+  }
+}
+
+/* Only the row under the pointer stops. The other keeps running, which
+   is what the reference does and what makes the pause read as "you
+   caught this one" rather than "the page froze".
+
+   :focus-within is not decoration — tabbing to a link inside a card
+   that is still sliding is unusable, so the keyboard gets the same
+   pause the mouse does. */
+.c4g-marquee:hover .c4g-marquee__track,
+.c4g-marquee:focus-within .c4g-marquee__track {
+  animation-play-state: paused;
+}
+
+/* ============================================================
+   Reduced motion: nothing moves on its own, but the content still
+   has to be reachable — so the row becomes a scroller instead of
+   a frozen strip with cards stranded off-screen.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .c4g-marquee {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .c4g-marquee::-webkit-scrollbar {
+    display: none;
+  }
+  .c4g-marquee__track {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Preloader — the live block. The curtain it replaced is gone from the
+ * file (see the note where it stood, above the hero's neighbours).
+ *
+ * Two names to be careful with, because both were reused rather than
+ * retired: `.c4g-pre__word` now means one word of a line, not the
+ * wordmark, and the panel's background lives on `.c4g-pre__sheet`, not
+ * on `.c4g-pre`. The sheet has to be able to fade out from under the
+ * words a beat before they leave; a background still sitting on the
+ * parent would stay opaque until unmount and there would be nothing for
+ * the words to dissolve into.
+ * ------------------------------------------------------------------ */
+
+.c4g-pre {
+  /* one place to change how far the marks stand off the block, and how
+     big they are — the JS never needs to know either number */
+  /* Doubled when the marks became flares. The flare's box is mostly its
+     hairline rays — the bright core is about 40% of it — where the old
+     glint filled its box edge to edge, so at the previous 14–26px the
+     mark read as a speck. The box is still what the centring offsets
+     below work from, so only the drawing grew, not the geometry. */
+  --c4g-mark: clamp(28px, 4.2vw, 52px);
+  --c4g-gap: clamp(0.85rem, 3vw, 2.5rem);
+  --c4g-edge: clamp(1rem, 4vw, 3rem);
+
+  /* How far apart the two columns of marks stand — mark centre to mark
+     centre, as a share of the screen. It is the block's whole width, so
+     the lead line is fitted to it (less the gutter the marks need) and
+     everything else is centred inside it. */
+  --c4g-span: 80vw;
+
+  /* How much of the screen the second line spans. The cap is what keeps
+     it to two or three lines: this sentence is 112 characters, so left to
+     run at 60% of a wide screen it straightens out into one long line at
+     the smaller size — the ceiling is reached around 1170px, and above
+     that the column holds still and the wrap holds with it. Raise the cap
+     for a longer sentence, or drop it to 100% for a literal 60%. */
+  --c4g-sub: 64vw;
+  --c4g-sub-cap: 56rem;
+
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  /* no background here — see the note above */
+  background: transparent;
+  isolation: isolate;
+}
+
+.c4g-pre__sheet {
+  position: absolute;
+  inset: 0;
+  background: #fafaf7;
+  /* the one thing on the panel that is worth a layer of its own */
+  will-change: opacity;
+}
+
+/* The marks straddle the block's edges, so half of one hangs past it on
+   either side and the gutter has to hold that as well as the page margin
+   — otherwise they clip off a 375px screen the moment they arrive. */
+.c4g-pre__viewport {
+  position: relative;
+  width: 100%;
+  padding-inline: calc(var(--c4g-edge) + var(--c4g-mark) / 2);
+  will-change: opacity, transform;
+}
+
+/* The box the four marks describe — its width *is* the span between the
+   two columns of marks, and neither line of copy is allowed to set it.
+   Shrink-wrapping it to the text would make the marks jump inward the
+   moment the second line changed how wide the block was.
+
+   It also carries the ride up off the centre line (JS animates `y` on it),
+   which is why the block's own transform lives here and not on the
+   viewport — the viewport's is the exit scale, and the two would fight. */
+.c4g-pre__frame {
+  position: relative;
+  width: min(var(--c4g-span), 100%);
+  margin-inline: auto;
+  text-align: center;
+  will-change: transform;
+}
+
+.c4g-pre__glint {
+  position: absolute;
+  width: var(--c4g-mark);
+  height: var(--c4g-mark);
+  display: block;
+  line-height: 0;
+  will-change: opacity, transform;
+}
+
+.c4g-pre__glint > svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Corners, straddling the edge rather than sitting inside it — centred on
+   it, so the distance between the two columns is exactly `--c4g-span` and
+   the copy keeps clear of them on its own (see the lead's max-width). The
+   JS animates `y` only, so these offsets stay put underneath it. */
+.c4g-pre__glint--left {
+  left: calc(var(--c4g-mark) / -2);
+}
+.c4g-pre__glint--right {
+  right: calc(var(--c4g-mark) / -2);
+}
+.c4g-pre__glint--top {
+  top: calc(var(--c4g-mark) / -2);
+}
+.c4g-pre__glint--bottom {
+  bottom: calc(var(--c4g-mark) / -2);
+}
+
+/* The panel's only line, so it takes the display face at headline size. */
+.c4g-pre__sub {
+  margin: 0 auto;
+  /* The share of the screen it wants, floored so a 375px phone still gets
+     a readable measure, and then held to the same clearance from the marks
+     the copy keeps — at that floor, 60% of a narrow screen would
+     otherwise put the last line's edge within a few pixels of the two
+     bottom marks. */
+  max-width: min(
+    clamp(15rem, var(--c4g-sub), var(--c4g-sub-cap)),
+    calc(100% - 2 * var(--c4g-gap))
+  );
+  color: #101418;
+  font-size: clamp(1.15rem, 2.5vw, 2.1rem);
+  line-height: 1.28;
+  letter-spacing: -0.015em;
+  font-weight: 500;
+  text-wrap: balance;
+}
+
+/* One word of a line. inline-block so it can carry its own opacity without
+   the compositor having to reason about a split inline box. */
+.c4g-pre__word {
+  display: inline-block;
+  will-change: opacity;
+}
+
+.c4g-pre__sub .accent {
+  color: #0b5cff;
+}
+
+/* Reduced motion: the JS already collapses every delay and puts the marks
+   straight on their corners, this just makes sure nothing is left holding
+   a compositor hint. */
+@media (prefers-reduced-motion: reduce) {
+  .c4g-pre__glint,
+  .c4g-pre__word,
+  .c4g-pre__frame,
+  .c4g-pre__viewport {
+    will-change: auto;
+  }
+}
+.catalouge {
+  background: linear-gradient(45deg, #e8ebed, transparent);
+}
+

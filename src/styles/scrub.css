@@ -1,0 +1,203 @@
+/* ------------------------------------------------------------------ *
+ * Scroll-scrubbed headline panel.
+ *
+ * Two tones off one set of tokens: `data-tone="blue"` is white on deep
+ * blue, `data-tone="white"` is blue on white. Nothing below the token
+ * block cares which is in play.
+ * ------------------------------------------------------------------ */
+
+.c4g-scrub {
+  /* the scroll budget for the wave: 100svh of it is the panel standing
+     still, the rest is what the characters are timed against */
+  --run: 220svh;
+
+  position: relative;
+  height: var(--run);
+}
+
+.c4g-scrub[data-tone="blue"] {
+  --panel: #04143a;
+  --ink: #ffffff;
+  --accent: #6ba4ff;
+  --muted: rgba(255, 255, 255, 0.58);
+  --hair: rgba(255, 255, 255, 0.14);
+  --grid: rgba(255, 255, 255, 0.05);
+  --cta-ink: #04143a;
+  --cta-bg: #ffffff;
+}
+
+.c4g-scrub[data-tone="white"] {
+  --panel: #ffffff;
+  --ink: #0a2a6b;
+  --accent: #0b5cff;
+  --muted: #4a5261;
+  --hair: rgba(10, 42, 107, 0.14);
+  --grid: rgba(10, 42, 107, 0.05);
+  --cta-ink: #ffffff;
+  --cta-bg: #0b5cff;
+}
+
+/* Sticky, not pinned by script: the panel holds the viewport for the
+   length of the section and the browser owns the compositing. */
+.c4g-scrub__panel {
+  position: sticky;
+  top: 0;
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  background: var(--panel);
+  color: var(--ink);
+}
+
+.c4g-scrub__grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: 120px 120px;
+  /* fades out toward the edges so it never fights the type */
+  -webkit-mask-image: radial-gradient(120% 90% at 50% 45%, #000 30%, transparent 78%);
+  mask-image: radial-gradient(120% 90% at 50% 45%, #000 30%, transparent 78%);
+}
+
+.c4g-scrub__wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 76rem;
+  margin-inline: auto;
+  padding: clamp(4rem, 10vh, 7rem) clamp(1.25rem, 5vw, 4rem);
+}
+
+.c4g-scrub__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0 0 clamp(1.75rem, 4vh, 2.75rem);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.c4g-scrub__tick {
+  width: 1.75rem;
+  height: 1px;
+  background: currentColor;
+}
+
+.c4g-scrub__head {
+  margin: 0;
+  max-width: 18ch;
+  font-size: clamp(2.25rem, 7.6vw, 6rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-align: start;
+}
+
+/* The split, same shape as the source: block lines, inline-block words so
+   a word never breaks across a line, inline-block characters so each can
+   carry its own opacity without the compositor having to reason about a
+   split inline box. */
+.c4g-scrub__line {
+  display: block;
+  width: 100%;
+}
+
+.c4g-scrub__word {
+  display: inline-block;
+}
+
+.c4g-scrub__word--accent {
+  color: var(--accent);
+}
+
+.c4g-scrub__char {
+  display: inline-block;
+  /* the resting state, and what the scrub animates away from */
+  opacity: 0.15;
+  will-change: opacity;
+}
+
+.c4g-scrub__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  margin-top: clamp(2.5rem, 6vh, 4rem);
+}
+
+.c4g-scrub__blurb {
+  margin: 0;
+  max-width: 46ch;
+  color: var(--muted);
+  font-size: clamp(0.95rem, 1.4vw, 1.0625rem);
+  line-height: 1.7;
+}
+
+.c4g-scrub__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex: none;
+  padding: 0.9rem 1.5rem;
+  border-radius: 999px;
+  background: var(--cta-bg);
+  color: var(--cta-ink);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s;
+}
+
+.c4g-scrub__cta:hover {
+  transform: translateX(3px);
+  opacity: 0.9;
+}
+
+.c4g-scrub__cta:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.c4g-scrub__rail {
+  margin-top: clamp(2.5rem, 6vh, 4rem);
+  height: 1px;
+  background: var(--hair);
+}
+
+.c4g-scrub__rail-fill {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transform-origin: left center;
+  /* scaleX is written by the same MotionValue the characters read */
+  transform: scaleX(0);
+}
+
+/* Reduced motion: no wave, no sticky run — just the section, said once. */
+@media (prefers-reduced-motion: reduce) {
+  .c4g-scrub {
+    height: auto;
+  }
+  .c4g-scrub__panel {
+    position: static;
+    min-height: 0;
+  }
+  .c4g-scrub__char {
+    opacity: 1;
+    will-change: auto;
+  }
+}
+
+/* Coarse pointers get a shorter run — a 220svh section is a lot of
+   thumb on a phone. */
+@media (max-width: 640px) {
+  .c4g-scrub {
+    --run: 180svh;
+  }
+}

@@ -1,0 +1,451 @@
+/* ------------------------------------------------------------------ *
+ * The Six Pillars — image-backed cards, quiet at rest, open on hover.
+ *
+ * Every colour is a token at the top. Drop your design.md values in
+ * here and nothing below this block needs touching.
+ *
+ * The head is the house set the rest of the site uses — asterisk and
+ * tracked-out brand blue on the eyebrow, Recoleta Medium uppercase on
+ * the display line closed with the blue full stop, #4A5261 body copy on
+ * the lede — so this section reads as the same page as the masthead
+ * above it rather than a widget dropped into it. Recoleta is spelled out
+ * rather than var(--font-recoleta) for the same reason index.css does
+ * it: that token is declared in a Tailwind @theme block, which a plain
+ * stylesheet like this one cannot see.
+ * ------------------------------------------------------------------ */
+
+.pillars {
+  --ink: #101418;
+  --brand: #0b5cff;
+  --muted: #4a5261;
+  --paper: #fafaf7;
+  --hair: rgba(16, 20, 24, 0.08);
+
+  position: relative;
+  scroll-margin-top: 6rem;
+  border-top: 1px solid var(--hair);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.pillars__inner {
+  max-width: 80rem; /* the site Container's `default` width */
+  margin-inline: auto;
+  padding: clamp(4rem, 9vw, 7rem) clamp(1.25rem, 5vw, 3rem);
+}
+
+/* ------------------------------------------------------------- head */
+/* Left-aligned and in the house type, the same three parts every other
+   section heading on the site is built from. */
+.pillars__head {
+  max-width: 46rem;
+  margin: 0 0 clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.pillars__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brand);
+}
+
+/* The brand asterisk, at the size it is set at everywhere else. */
+.pillars__ast {
+  flex: none;
+  width: 0.875rem;
+  height: 0.875rem;
+  fill: none;
+  stroke: var(--brand);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+
+.pillars__title {
+  margin: 1.25rem 0 0;
+  font-family: "Recoleta", Georgia, serif;
+  /* 500 and not a shade more. Recoleta ships here as a single Medium
+     file, so asking for bolder gets a synthesised bold. */
+  font-weight: 500;
+  font-size: clamp(1.9rem, 3.4vw, 2.3rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+/* The blue full stop that closes every display line on the site. */
+.pillars__stop {
+  color: var(--brand);
+}
+
+.pillars__lede {
+  margin: 1.25rem 0 0;
+  max-width: 42rem;
+  font-size: 15px;
+  line-height: 1.75rem;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+@media (min-width: 1024px) {
+  .pillars__lede {
+    font-size: 16px;
+  }
+}
+
+/* ------------------------------------------------------------- grid */
+.pillars__grid {
+  display: grid;
+  gap: clamp(0.85rem, 1.4vw, 1.25rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+
+/* ------------------------------------------------------------- card */
+/* The card is self-contained (see components/common/PillarCard) and is
+   used outside .pillars too, so its tokens live on it, and its entrance
+   keys off whichever ancestor useInView marks `is-in`. */
+.pillar {
+  /* on-card, always dark ground under white type */
+  --card-ink: #ffffff;
+  --card-dim: rgba(255, 255, 255, 0.72);
+  --card-hair: rgba(255, 255, 255, 0.24);
+  --card-base: #0a1524;
+
+  --radius: 16px;
+  --pad: clamp(1.4rem, 2.2vw, 1.9rem);
+
+  /* One stagger step, shared by the card's entrance and the blur ramp
+     behind its copy so the two stay locked to each other. */
+  --step: var(--reveal-step, 100ms);
+
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: clamp(360px, 30vw, 440px);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--card-base);
+  color: var(--card-ink);
+
+  /* scroll reveal — --i staggers it, and nothing else reads --i */
+  opacity: 0;
+  transform: translateY(var(--reveal-rise, 28px));
+  transition: opacity var(--reveal-dur, 1s) var(--reveal-ease),
+    transform var(--reveal-dur, 1s) var(--reveal-ease);
+}
+
+/* The cards follow the section header (a RevealGroup) by CUE.follow, so the
+   grid arrives in the tail of the headline, as it does on the homepage. */
+.is-in .pillar {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(var(--reveal-follow, 240ms) + var(--i, 0) * var(--step));
+}
+
+.pillar__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.01);
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Two scrims, not one: the flat wash keeps the whole image dark enough
+   for white type wherever the photo happens to be light, and the
+   bottom-weighted gradient buys the copy block its own contrast. */
+.pillar__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+      to top,
+      rgba(6, 14, 28, 0.92) 0%,
+      rgba(6, 14, 28, 0.55) 48%,
+      rgba(6, 14, 28, 0.12) 100%
+    ),
+    rgba(8, 18, 34, 0.16);
+  transition: opacity 0.6s ease;
+}
+
+.pillar:hover .pillar__bg,
+.pillar:focus-within .pillar__bg {
+  transform: scale(1.07);
+}
+
+/* --------------------------------------------------------- card top */
+.pillar__top {
+  position: absolute;
+  top: var(--pad);
+  left: var(--pad);
+  right: var(--pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.pillar__icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: var(--card-ink);
+}
+
+.pillar__icon svg {
+  width: 30px;
+  height: 30px;
+}
+
+.pillar__no {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--card-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ------------------------------------------------------ glass panel */
+/* Every word the card says sits on this one surface, so the photograph
+   is blurred once behind the whole block rather than haloed per line.
+   It is what makes white type safe over an arbitrary image — the scrims
+   above set the floor, this sets the contrast the copy is actually read
+   at.
+
+   Full-bleed to the card's edges, so it reads as a pane of glass laid
+   over the bottom of the photo; the card's padding lives in here. */
+.pillar__panel {
+  position: relative;
+  padding: var(--pad);
+  background-color: rgba(6, 14, 28, 0);
+  border-top: 1px solid transparent;
+  transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+
+/* The glass lives on its own layer at a fixed blur radius, and the ramp
+   is an opacity fade of that layer. Animating the blur radius itself
+   forces the browser to re-run the whole blur every frame on all six
+   cards at once — that was the hitch on scroll-in. Opacity is a
+   compositor-only change, so the fade costs next to nothing.
+
+   z-index -1 drops it into the card's stacking context (the card is
+   isolated), above the photo and scrim but under the panel's own tint
+   and copy. */
+.pillar__panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  -webkit-backdrop-filter: blur(16px) saturate(135%);
+  backdrop-filter: blur(16px) saturate(135%);
+  opacity: 0;
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+/* Nothing is blurred until the section is scrolled to; then each card's
+   glass resolves out of its own photograph, in the same order the cards
+   arrive in. */
+.is-in .pillar__panel {
+  background-color: rgba(6, 14, 28, 0.34);
+  border-top-color: var(--card-hair);
+}
+
+.is-in .pillar__panel::before {
+  opacity: 1;
+  transition-delay: calc(var(--reveal-follow, 240ms) + var(--i, 0) * var(--step) + 140ms);
+}
+
+.is-in .pillar:hover .pillar__panel,
+.is-in .pillar:focus-within .pillar__panel {
+  background-color: rgba(6, 14, 28, 0.55);
+}
+
+/* Where backdrop-filter is missing the tint is carrying the contrast on
+   its own, so it is taken up to a weight that holds on any photograph. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .is-in .pillar__panel {
+    background-color: rgba(6, 14, 28, 0.68);
+  }
+
+  .is-in .pillar:hover .pillar__panel,
+  .is-in .pillar:focus-within .pillar__panel {
+    background-color: rgba(6, 14, 28, 0.8);
+  }
+}
+
+/* -------------------------------------------------------- card copy */
+.pillar__title {
+  margin: 0;
+  font-family: "Recoleta", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  /* Always two lines tall, so a one-line title gets the same panel as a
+     two-line one and every card's glass starts at the same height. */
+  min-height: 2.5em;
+}
+
+/* The divider draws itself out of the left edge when the card opens —
+   the one piece of motion that says "this is opening" rather than
+   "this is fading". */
+.pillar__rule {
+  display: block;
+  height: 1px;
+  margin: 0.95rem 0 0;
+  background: var(--card-hair);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* The reveal is a 0fr → 1fr grid row rather than a max-height guess or
+   a block that is always there at opacity 0. Nothing reserves empty
+   space at rest, nothing jumps when it opens, and the row is exactly as
+   tall as the copy inside it however long that copy runs. */
+.pillar__reveal {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pillar__reveal > * {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.pillar__body {
+  margin: 0;
+  padding-top: 0.9rem;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--card-dim);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.45s ease 0.06s, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.06s;
+}
+
+.pillar__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 1.15rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--card-ink);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.45s ease 0.14s, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.14s;
+}
+
+.pillar__cta::after {
+  content: "";
+  width: 26px;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* --------------------------------------------------------- the open */
+.pillar:hover .pillar__rule,
+.pillar:focus-within .pillar__rule {
+  transform: scaleX(1);
+}
+
+.pillar:hover .pillar__reveal,
+.pillar:focus-within .pillar__reveal {
+  grid-template-rows: 1fr;
+}
+
+.pillar:hover .pillar__body,
+.pillar:focus-within .pillar__body,
+.pillar:hover .pillar__cta,
+.pillar:focus-within .pillar__cta {
+  opacity: 1;
+  transform: none;
+}
+
+.pillar:hover .pillar__cta::after {
+  width: 40px;
+}
+
+/* The whole card is the link, but only one real anchor is in the tab
+   order and it carries the accessible name. */
+.pillar__link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.pillar__link:focus-visible {
+  outline: 2px solid var(--card-ink);
+  outline-offset: -6px;
+  border-radius: var(--radius);
+}
+
+.pillar__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------------ *
+ * Touch: there is no hover, so the cards are simply open. Hiding the
+ * substance behind a gesture that does not exist on the device is the
+ * usual way this pattern fails.
+ * ------------------------------------------------------------------ */
+@media (hover: none) {
+  .pillar {
+    min-height: 0;
+  }
+  /* The top row is absolute, so the panel has to leave it room. */
+  .pillar__panel {
+    padding-top: calc(var(--pad) + 60px);
+  }
+  .pillar__rule {
+    transform: scaleX(1);
+  }
+  .pillar__reveal {
+    grid-template-rows: 1fr;
+  }
+  .pillar__body,
+  .pillar__cta {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pillar,
+  .pillar__bg,
+  .pillar__rule,
+  .pillar__reveal,
+  .pillar__panel,
+  .pillar__panel::before,
+  .pillar__body,
+  .pillar__cta {
+    transition-duration: 0.01ms;
+  }
+
+  .is-in .pillar__panel::before {
+    transition-delay: 0s;
+  }
+}

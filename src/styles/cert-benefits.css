@@ -1,0 +1,207 @@
+/* =========================================================
+   Tokens — matched to the /products/certifications hero
+   ========================================================= */
+.cb-section {
+  --cb-blue: #0b5cff;        /* primary buttons, accents */
+  --cb-blue-soft: #eef3ff;   /* tinted surfaces */
+  --cb-ink: #101418;         /* headings — site ink */
+  --cb-body: #4a5261;        /* paragraph text — site body grey */
+  --cb-line: #e5e7eb;        /* hairline borders */
+  --cb-card-bg: #ffffff;
+
+  --cb-sticky-top: 120px;    /* where cards park while stacking */
+  /* never taller than the space below the sticky line, so the card always fits */
+  --cb-card-h: min(440px, calc(100vh - var(--cb-sticky-top) - 32px));
+  --cb-dwell: 45vh;          /* scroll time each card stays on screen */
+  --cb-tail: 0px;            /* set by JS: lets the copy and last card release together */
+
+  position: relative;
+  padding: 120px 24px 160px;
+  color: var(--cb-ink);
+  background:
+    radial-gradient(60% 50% at 85% 20%, rgba(11, 92, 255, 0.08), transparent 70%),
+    radial-gradient(50% 40% at 10% 80%, rgba(11, 92, 255, 0.06), transparent 70%),
+    #fff;
+}
+.cb-section *,
+.cb-section *::before,
+.cb-section *::after { box-sizing: border-box; }
+
+/* =========================================================
+   Layout — cards left, sticky copy right
+   ========================================================= */
+.cb-wrap {
+  max-width: 1160px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 460px) minmax(0, 1fr);
+  gap: 80px;
+  align-items: start; /* lets .cb-copy stick instead of stretching */
+}
+
+/* ---------- Sticky copy ---------- */
+.cb-copy {
+  position: sticky;
+  top: var(--cb-sticky-top);
+}
+/* Type follows the other certification sections (CertHero, Certificationtracks):
+   12px tracked eyebrow, Recoleta Medium uppercase headline, 15/16px Inter body. */
+.cb-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cb-blue);
+  margin-bottom: 20px;
+}
+.cb-eyebrow svg { width: 14px; height: 14px; stroke: var(--cb-blue); flex-shrink: 0; }
+.cb-copy h2 {
+  /* Spelled out rather than var(--font-recoleta) — that token only exists
+     inside Tailwind utilities (see index.css .hero-display). Recoleta ships as
+     a single Medium file, so 500: anything bolder is a synthesised bold. */
+  font-family: "Recoleta", Georgia, serif;
+  font-size: 1.75rem;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--cb-ink);
+  margin: 0 0 20px;
+}
+@media (min-width: 640px)  { .cb-copy h2 { font-size: 2.15rem; } }
+@media (min-width: 1024px) { .cb-copy h2 { font-size: 2.6rem; } }
+.cb-dot { color: var(--cb-blue); }
+.cb-copy p {
+  font-size: 15px;
+  line-height: 28px;
+  color: var(--cb-body);
+  margin: 0 0 14px;
+  max-width: 500px;
+}
+@media (min-width: 1024px) { .cb-copy p { font-size: 16px; } }
+.cb-copy p a { color: var(--cb-blue); }
+.cb-copy__lead { color: var(--cb-ink) !important; font-weight: 500; }
+
+.cb-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 28px 0;
+  font-size: 14px;
+  color: #9ca3af;
+  font-variant-numeric: tabular-nums;
+}
+.cb-progress strong {
+  font-family: "Recoleta", Georgia, serif;
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--cb-ink);
+}
+.cb-bar {
+  width: 140px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--cb-line);
+  overflow: hidden;
+}
+.cb-bar i {
+  display: block;
+  height: 100%;
+  width: 33.3%;
+  background: var(--cb-blue);
+  transition: width 0.4s ease;
+}
+
+.cb-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+
+/* =========================================================
+   Stacking cards — every card sticks at the same `top`;
+   later cards paint on top, so they slide over earlier ones.
+   ========================================================= */
+.cb-card {
+  --p: 0; /* set by JS: 0 → 1 as the next card covers this one */
+  position: sticky;
+  top: var(--cb-sticky-top);
+  height: var(--cb-card-h);
+  display: flex;
+  flex-direction: column;
+  background: var(--cb-card-bg);
+  border: 1px solid var(--cb-line);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 -10px 40px rgba(17, 24, 39, 0.08);
+  transform-origin: 50% 0%;
+  transform: perspective(1200px) scale(calc(1 - var(--p) * 0.08)) rotateX(calc(var(--p) * 6deg));
+  filter: brightness(calc(1 - var(--p) * 0.12)) grayscale(var(--p));
+  will-change: transform, filter;
+}
+.cb-card__art {
+  flex: 1 1 auto;
+  display: grid;
+  place-items: center;
+  border-bottom: 1px solid var(--cb-line);
+  color: var(--cb-ink); /* stroke colour of the line icons */
+}
+.cb-card__art svg { width: 62%; max-height: 86%; }
+
+.cb-card--tint  .cb-card__art { background: var(--cb-blue-soft); }
+.cb-card--plain .cb-card__art {
+  background:
+    linear-gradient(var(--cb-line) 1px, transparent 1px) 0 0 / 24px 24px,
+    linear-gradient(90deg, var(--cb-line) 1px, transparent 1px) 0 0 / 24px 24px,
+    #fafafa;
+}
+.cb-card--brand .cb-card__art { background: var(--cb-blue); color: #fff; }
+
+.cb-card__body { padding: 22px 26px 26px; }
+.cb-card__num {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--cb-blue);
+  margin-bottom: 8px;
+}
+.cb-card__body p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 24px;
+  color: var(--cb-body);
+}
+.cb-card__body strong { color: var(--cb-ink); font-weight: 600; }
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+@media (max-width: 860px) {
+  .cb-section {
+    --cb-sticky-top: 90px;
+    --cb-card-h: min(420px, calc(100vh - var(--cb-sticky-top) - 24px));
+    --cb-dwell: 35vh;
+    padding: 80px 16px 120px;
+  }
+  .cb-wrap { grid-template-columns: 1fr; gap: 40px; }
+  .cb-copy { position: static; order: -1; }
+  .cb-progress { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cb-card { transform: none !important; filter: none !important; }
+}
+
+/* gap sits on top of the next card, not under the previous one */
+.cb-card + .cb-card { margin-top: var(--cb-dwell); }
+
+/* Room after the last card so it stays parked as long as the others.
+   --cb-tail extends the grid past the stack by (copy height − card height),
+   so the taller sticky copy and the last card scroll away at the same moment. */
+.cb-stack { margin-bottom: var(--cb-tail); }
+/* must be content, not padding — sticky children can't move into the parent's padding */
+.cb-stack::after {
+  content: "";
+  display: block;
+  height: var(--cb-dwell);
+}
