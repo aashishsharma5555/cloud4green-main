@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cloud4green
+  namespace: cloud4green
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - cloud4green.com
+        - www.cloud4green.com
+      secretName: cloud4green-tls
+  rules:
+    - host: cloud4green.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: cloud4green
+                port:
+                  number: 80
+    - host: www.cloud4green.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: cloud4green
+                port:
+                  number: 80

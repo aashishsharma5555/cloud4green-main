@@ -1,0 +1,6 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cloud4green
+  labels:
+    app.kubernetes.io/name: cloud4green
